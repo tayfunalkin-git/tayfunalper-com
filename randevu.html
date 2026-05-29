@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prof. Dr. Tayfun Alper</title>
+
+    <!-- Favicons -->
+	<link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+	<link rel="icon" href="/img/favicon.png" type="image/x-icon">
+
+	<!-- App CSS -->
+    <link rel="stylesheet" href="/css/app.min.css">
+	<!-- Vendor CSS (Webpack bundle) -->
+    <link rel="stylesheet" href="/css/vendor.min.css">
+
+</head>
+<body>
+
+    <!-- Main -->
+	<main class="app">
+
+		<!-- Section -->
+		<header class="ta-header">
+            <div class="custom-container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navbar navbar-expand-xl">
+                            <a class="navbar-brand logo-content" href="/index.html">
+                                <img src="/img/logo-dark.svg" data-dark="/img/logo-dark.svg" data-light="/img/logo-light.svg" class="logo" alt="logo">
+                            </a>
+                            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="mobileMenuBtn fa-solid fa-bars fs-16"></i>
+                            </button>
+                            <div class="collapse navbar-collapse align-items-xl-end justify-content-xl-end flex-xl-column menu-content" id="navbarMenu">
+                                <div class="close d-flex d-xl-none cursor-pointer" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                                <div class="menu-logo d-flex d-xl-none">
+                                    <img src="/img/logo-light.svg" class="logo" alt="logo">
+                                </div>
+                                <div class="randevu-desktop d-none d-xl-flex">
+                                    <a class="btn-blue rounded" href="/randevu.html">RANDEVU AL</a>
+                                </div>
+                                <ul class="navbar-nav mainMenu clearfix">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/biyografi.html">Biyografi</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Infertilite
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start">
+                                            <li><a class="dropdown-item" href="/infertilite.html">Infertilite</a></li>
+                                            <li><a class="dropdown-item" href="/infertilite-hastalik-genital-organlarin-dogustan-yoklugu.html">Hastalıklar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Tüp Bebek
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start">
+                                            <li><a class="dropdown-item" href="/tup-bebek.html">Tüp Bebek</a></li>
+                                            <li><a class="dropdown-item" href="/tup-bebek-tedavi-basamaklari-adayligin-kabulu.html">Tedavi Basamakları</a></li>
+                                            <li><a class="dropdown-item" href="/tup-bebek-gebelik-asamalari-gebelik-testi-tekrari.html">Gebelik Aşamaları</a></li>
+                                            <li><a class="dropdown-item" href="/tup-bebek-tup-bebek-videosu.html">Tüp Bebek Videosu</a></li>
+                                            <li><a class="dropdown-item" href="https://www.tupbebekcevaplari.com" target="_blank">Sıkça Sorulan Sorular</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="https://ftip.com.tr" target="_blank">Fonksiyonel Tıp</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Gebelik USG
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-start">
+                                            <li><a class="dropdown-item" href="/gebelik-usg-ultrasonla-muayene-usg-neyi-gosterir.html">Ultrasonla Muayene</a></li>
+                                            <li><a class="dropdown-item" href="/gebelik-usg-haftalara-gore-ilk-gebelik-muayenesi.html">Haftalara Göre</a></li>
+                                            <li><a class="dropdown-item" href="/gebelik-usg-renkli-ultrason-ultrason-tipleri.html">Renkli Ultrason</a></li>
+                                            <li><a class="dropdown-item" href="/gebelik-usg-sistemlere-gore-anomaliler-kafa-beyin.html">Sistemlere Göre Anomaliler</a></li>
+                                            <li><a class="dropdown-item" href="/gebelik-usg-diger-anomaliler-su-azligi-fazlaligi.html">Diğer Anomaliler</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item randevu-mobile d-inline-flex d-xl-none">
+                                        <a class="btn-blue rounded" href="/randevu.html">RANDEVU AL</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-overlay d-xl-none"></div>
+        </header>
+
+		<!-- Section -->
+		<section class="ta-page text-page sidebar-page appointment">
+			<div class="custom-container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-11">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <a href="javascript:;" class="text-decoration-none appoTrigger h-100 d-block" onclick="$('.appoWrapper').toggle();">
+                                    <div class="card info-card">
+                                        <div class="card-image">
+                                            <img src="/img/others/info-card-image-01.png" alt="Takipli Hasta">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5>Takipli Hasta&nbsp;<br>Randevu</h5>
+                                            <p>Süreci devam eden hastalarımız, randevu planlaması ve diğer hasta işlemlerini bu bölümden iletebilir.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="https://wa.me/905515121800?text=%C4%B0lk%20Ba%C5%9Fvuru%20/%20WhatsApp%0ADan%C4%B1%C5%9Fma%20Hatt%C4%B1" class="text-decoration-none h-100 d-block" target="_blank">
+                                    <div class="card info-card">
+                                        <div class="card-image">
+                                            <img src="/img/others/info-card-image-02.png" alt="İlk Başvuru">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5>İlk Başvuru / WhatsApp&nbsp;<br>Danışma Hattı</h5>
+                                            <p>İlk kez yazıyorsanız veya hangi sürecin size uygun olduğunu netleştirmek istiyorsanız bu bölüm uygundur.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="https://www.medicalpark.com.tr/hekimler/yasar-tayfun-alper" class="text-decoration-none h-100 d-block" target="_blank">
+                                    <div class="card info-card">
+                                        <div class="card-image">
+                                            <img src="/img/others/info-card-image-03.png" alt="Ayrıntılı Ultrason">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5>Ayrıntılı Ultrason&nbsp;<br>Randevusu</h5>
+                                            <p>Ayrıntılı ultrason muayenesi için hastanenin resmi randevu sistemini kullanabilirsiniz.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 appoWrapper" style="display:none">
+                                <form id="appointmentForm" novalidate>
+        
+                                    <h4 class="section-title">Talebinizin Türünü Seçiniz</h4>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="talepTuru" id="talep1" value="Dondurulmuş embriyo transferi için gelmek istiyorum, adetim başladı" required>
+                                            <label class="custom-radio-card w-100 m-0" for="talep1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28.489" height="38.782" viewBox="0 0 28.489 38.782">
+                                                    <g id="Group_1380" data-name="Group 1380" transform="translate(0)">
+                                                        <path id="Path_8009" data-name="Path 8009" d="M21.928,16.663c-1.635-3.218-3.521-6.3-5.364-9.395C15.1,4.872,13.721,2.43,12.319,0,9.66,4.973,6.578,9.7,3.853,14.64A32.947,32.947,0,0,0,.408,22.834a13.671,13.671,0,0,0,.939,9.338A12.366,12.366,0,0,0,8.5,38.183a12.629,12.629,0,0,0,8.593-.332,12.2,12.2,0,0,0,5.27-4.1A12.644,12.644,0,0,0,24.6,24.6a24.182,24.182,0,0,0-2.676-7.938M2.676,27.146a4.24,4.24,0,0,1,.432-2.312c.375-.452.79.2.833.571.427,2.239,1.141,4.608,2.947,6.137.763.743,1.8,1.144,2.523,1.925a.73.73,0,0,1-.259,1.2,4,4,0,0,1-3.42-1.173,9.312,9.312,0,0,1-3.056-6.346" transform="translate(-0.001)" fill="#c80f48"/>
+                                                        <path id="Path_8010" data-name="Path 8010" d="M428.905,81.16c-.722-1.4-1.623-2.7-2.388-4.075-.917,1.636-1.961,3.2-2.8,4.883a5.384,5.384,0,0,0-.636,3.617,3.473,3.473,0,0,0,3.3,2.653,3.79,3.79,0,0,0,2.457-.849,3.537,3.537,0,0,0,1.224-3.26,9.117,9.117,0,0,0-1.155-2.969m-5.142,3.131.314.043a4.543,4.543,0,0,0,.644,1.635,6.159,6.159,0,0,0,1.2.966l-.206.282a2.425,2.425,0,0,1-1.955-2.926" transform="translate(-401.611 -73.192)" fill="#c80f48"/>
+                                                    </g>
+                                                </svg>
+                                                <span>Dondurulmuş embriyo transferi için gelmek istiyorum, adetim başladı</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="talepTuru" id="talep2" value="Adetim başladı, tüp bebek tedavisine başlamak için gelmek istiyorum">
+                                            <label class="custom-radio-card w-100 m-0" for="talep2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28.489" height="38.782" viewBox="0 0 28.489 38.782">
+                                                    <g id="Group_1380" data-name="Group 1380" transform="translate(0)">
+                                                        <path id="Path_8009" data-name="Path 8009" d="M21.928,16.663c-1.635-3.218-3.521-6.3-5.364-9.395C15.1,4.872,13.721,2.43,12.319,0,9.66,4.973,6.578,9.7,3.853,14.64A32.947,32.947,0,0,0,.408,22.834a13.671,13.671,0,0,0,.939,9.338A12.366,12.366,0,0,0,8.5,38.183a12.629,12.629,0,0,0,8.593-.332,12.2,12.2,0,0,0,5.27-4.1A12.644,12.644,0,0,0,24.6,24.6a24.182,24.182,0,0,0-2.676-7.938M2.676,27.146a4.24,4.24,0,0,1,.432-2.312c.375-.452.79.2.833.571.427,2.239,1.141,4.608,2.947,6.137.763.743,1.8,1.144,2.523,1.925a.73.73,0,0,1-.259,1.2,4,4,0,0,1-3.42-1.173,9.312,9.312,0,0,1-3.056-6.346" transform="translate(-0.001)" fill="#c80f48"/>
+                                                        <path id="Path_8010" data-name="Path 8010" d="M428.905,81.16c-.722-1.4-1.623-2.7-2.388-4.075-.917,1.636-1.961,3.2-2.8,4.883a5.384,5.384,0,0,0-.636,3.617,3.473,3.473,0,0,0,3.3,2.653,3.79,3.79,0,0,0,2.457-.849,3.537,3.537,0,0,0,1.224-3.26,9.117,9.117,0,0,0-1.155-2.969m-5.142,3.131.314.043a4.543,4.543,0,0,0,.644,1.635,6.159,6.159,0,0,0,1.2.966l-.206.282a2.425,2.425,0,0,1-1.955-2.926" transform="translate(-401.611 -73.192)" fill="#c80f48"/>
+                                                    </g>
+                                                </svg>
+                                                <span>Adetim başladı, tüp bebek tedavisine başlamak için gelmek istiyorum</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="talepTuru" id="talep3" value="Yarınki randevu saatimi öğrenmek / teyit etmek istiyorum">
+                                            <label class="custom-radio-card w-100 m-0" for="talep3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="41.552" height="41.552" viewBox="0 0 41.552 41.552">
+                                                    <g id="Group_1381" data-name="Group 1381" transform="translate(0 0)">
+                                                        <path id="Path_8024" data-name="Path 8024" d="M37.574,15.2a.829.829,0,0,0-.539,1.008,16.919,16.919,0,1,1-5.164-8.16l-1.364,1.38a1.188,1.188,0,0,0,.767,2.021l5.945.392a1.188,1.188,0,0,0,1.263-1.277l-.459-5.94a1.188,1.188,0,0,0-2.03-.744l-1.383,1.4q-.665-.594-1.377-1.129a20.732,20.732,0,1,0,7.521,10.909.831.831,0,0,0-1.061-.562Z" transform="translate(0 -0.001)" fill="#1e2833"/>
+                                                        <path id="Path_8025" data-name="Path 8025" d="M739.542,200.576h-.559a.337.337,0,0,1-.337-.337v-2.455a.337.337,0,0,1,.337-.337h.559a.337.337,0,0,1,.337.337v2.455a.337.337,0,0,1-.337.337" transform="translate(-718.487 -192.059)" fill="#1e2833"/>
+                                                        <path id="Path_8026" data-name="Path 8026" d="M200.575,738.985v.559a.337.337,0,0,1-.337.337h-2.455a.337.337,0,0,1-.337-.337v-.559a.337.337,0,0,1,.337-.337h2.455a.337.337,0,0,1,.337.337" transform="translate(-192.058 -718.488)" fill="#1e2833"/>
+                                                        <path id="Path_8027" data-name="Path 8027" d="M738.984,1210.379h.559a.337.337,0,0,1,.337.337v2.455a.337.337,0,0,1-.337.337h-.559a.337.337,0,0,1-.337-.337v-2.455a.337.337,0,0,1,.337-.337" transform="translate(-718.487 -1177.344)" fill="#1e2833"/>
+                                                        <path id="Path_8028" data-name="Path 8028" d="M1210.378,739.544v-.559a.337.337,0,0,1,.337-.337h2.455a.337.337,0,0,1,.337.337v.559a.337.337,0,0,1-.337.337h-2.455a.337.337,0,0,1-.337-.337" transform="translate(-1177.343 -718.488)" fill="#1e2833"/>
+                                                        <path id="Path_8029" data-name="Path 8029" d="M545.435,344.588a1.191,1.191,0,0,1-.552.45l-6.057,2.436a1.2,1.2,0,0,1-1.524-.589l-5.055-10.443A1.2,1.2,0,1,1,534.4,335.4l4.568,9.437,5.02-2.019a1.2,1.2,0,0,1,1.445,1.772" transform="translate(-517.604 -325.588)" fill="#c64242"/>
+                                                    </g>
+                                                </svg>
+                                                <span>Yarınki randevu saatimi öğrenmek / teyit etmek istiyorum</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="talepTuru" id="talep4" value="Yeniden değerlendirme / tedaviye başlama için randevu almak istiyorum">
+                                            <label class="custom-radio-card w-100 m-0" for="talep4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="40.132" height="35.599" viewBox="0 0 40.132 35.599">
+                                                    <g id="Group_1382" data-name="Group 1382" transform="translate(0 0)">
+                                                        <path id="Path_8011" data-name="Path 8011" d="M211.386,707.849h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744" transform="translate(-200.934 -691.354)" fill="#1d2a30"/>
+                                                        <path id="Path_8012" data-name="Path 8012" d="M572.057,712.266h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744" transform="translate(-558 -691.354)" fill="#1d2a30"/>
+                                                        <path id="Path_8013" data-name="Path 8013" d="M937.642,712.266h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744" transform="translate(-915.066 -691.354)" fill="#1d2a30"/>
+                                                        <path id="Path_8014" data-name="Path 8014" d="M211.386,957.575h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744" transform="translate(-200.934 -935.261)" fill="#1d2a30"/>
+                                                        <path id="Path_8015" data-name="Path 8015" d="M572.057,961.991h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744" transform="translate(-558 -935.26)" fill="#1d2a30"/>
+                                                        <path id="Path_8016" data-name="Path 8016" d="M572.057,1211.717h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744" transform="translate(-558 -1179.167)" fill="#1d2a30"/>
+                                                        <path id="Path_8017" data-name="Path 8017" d="M211.386,1207.3h-4.914a.744.744,0,0,0-.744.744v2.929a.744.744,0,0,0,.744.744h4.914a.744.744,0,0,0,.744-.744v-2.929a.744.744,0,0,0-.744-.744" transform="translate(-200.934 -1179.168)" fill="#1d2a30"/>
+                                                        <path id="Path_8018" data-name="Path 8018" d="M30.375,161.552h-.853v2.66a2.09,2.09,0,0,1-4.18,0v-2.66h-3.1v2.66a2.09,2.09,0,0,1-4.18,0v-2.66h-3.1v2.66a2.09,2.09,0,0,1-4.18,0v-2.66h-3.1v2.66a2.09,2.09,0,0,1-4.18,0v-2.66H2.653A2.653,2.653,0,0,0,0,164.205v26.548a2.634,2.634,0,0,0,2.634,2.634H30.394a2.634,2.634,0,0,0,2.634-2.634V164.205a2.653,2.653,0,0,0-2.653-2.653m.977,29.181a.979.979,0,0,1-.977.978H2.653a.979.979,0,0,1-.977-.978V172.909H31.353Z" transform="translate(0 -157.787)" fill="#1d2a30"/>
+                                                        <path id="Path_8019" data-name="Path 8019" d="M185.052,7.741h0a1.315,1.315,0,0,0,1.315-1.315V1.316a1.315,1.315,0,1,0-2.63,0V6.425a1.315,1.315,0,0,0,1.315,1.315" transform="translate(-179.455 -0.001)" fill="#1d2a30"/>
+                                                        <path id="Path_8020" data-name="Path 8020" d="M497.394,7.741h0a1.315,1.315,0,0,0,1.315-1.315V1.316a1.315,1.315,0,1,0-2.63,0V6.425a1.315,1.315,0,0,0,1.315,1.315" transform="translate(-484.519 -0.001)" fill="#1d2a30"/>
+                                                        <path id="Path_8021" data-name="Path 8021" d="M809.737,7.741h0a1.315,1.315,0,0,0,1.315-1.315V1.316a1.315,1.315,0,1,0-2.63,0V6.425a1.315,1.315,0,0,0,1.315,1.315" transform="translate(-789.584 -0.001)" fill="#1d2a30"/>
+                                                        <path id="Path_8022" data-name="Path 8022" d="M1122.079,7.741h0a1.315,1.315,0,0,0,1.315-1.315V1.316a1.315,1.315,0,0,0-2.63,0V6.425a1.315,1.315,0,0,0,1.315,1.315" transform="translate(-1094.647 -0.001)" fill="#1d2a30"/>
+                                                        <path id="Path_8023" data-name="Path 8023" d="M943.374,803.708l-6.151-6.151a1.112,1.112,0,0,1,0-1.572l1.608-1.608a1.112,1.112,0,0,1,1.572,0l3.693,3.693,7.6-7.595a1.112,1.112,0,0,1,1.572,0l1.608,1.608a1.112,1.112,0,0,1,0,1.572l-10.053,10.053a1.021,1.021,0,0,1-1.444,0" transform="translate(-915.065 -771.736)" fill="#48b78c"/>
+                                                    </g>
+                                                </svg>
+                                                <span>Yeniden değerlendirme / tedaviye başlama için randevu almak istiyorum</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="talepTuru" id="talep5" value="Ücret ve paket bilgisi almak istiyorum">
+                                            <label class="custom-radio-card w-100 m-0" for="talep5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="39.226" height="36.388" viewBox="0 0 39.226 36.388">
+                                                    <g id="Group_1383" data-name="Group 1383" transform="translate(0)">
+                                                        <path id="Path_8030" data-name="Path 8030" d="M7.45,237.831a1.425,1.425,0,0,1-.289.493,1.48,1.48,0,0,1-.461.343l-.171.086a1.439,1.439,0,0,1-1.114.064,1.424,1.424,0,0,1-.835-.739L.146,228.985a1.439,1.439,0,0,1-.064-1.114,1.493,1.493,0,0,1,.739-.835l.171-.086a1.488,1.488,0,0,1,.643-.15,1.525,1.525,0,0,1,.482.086,1.656,1.656,0,0,1,.386.2.537.537,0,0,0,.15.161.376.376,0,0,0,.086.054,1.5,1.5,0,0,1,.225.332l4.295,8.825.021.032.118.246a1.422,1.422,0,0,1,.054,1.092" transform="translate(0 -202.511)" fill="#0446c4"/>
+                                                        <path id="Path_8031" data-name="Path 8031" d="M71.434,186a2.269,2.269,0,0,1-1,1.885L58.7,195.851c-.3.129-3.577,1.36-15.764.471a3.474,3.474,0,0,0-1.553.225l-1.017.375L36.3,188.59a2.273,2.273,0,0,0-.225-.386,7.436,7.436,0,0,1,9.339-2.228,7.41,7.41,0,0,0,3.02.632h8.107a2.579,2.579,0,0,1,2.056.985,1.432,1.432,0,0,1,.193,1.628l-.032.064a2.279,2.279,0,0,1-.268.418,2.608,2.608,0,0,1-2.088,1.017H49.565a.632.632,0,1,0,0,1.264H56.4a3.881,3.881,0,0,0,3.1-1.521,5.79,5.79,0,0,0,.332-.5l7.989-5.8a2.238,2.238,0,0,1,1.756-.4,2.308,2.308,0,0,1,1.5,1A2.334,2.334,0,0,1,71.434,186" transform="translate(-32.208 -164.044)" fill="#0446c4"/>
+                                                        <path id="Path_8032" data-name="Path 8032" d="M51.456,1.071h-.011L47.6,1.285H47.59A46.559,46.559,0,0,1,34.171.129v14.19a42.741,42.741,0,0,0,6.544,1.125l2.977.193,3.673-1.96a.632.632,0,0,1,.6,1.114l-1.671.889a105.719,105.719,0,0,0,15.432-1.424V0c-3.309.418-6.811.814-10.27,1.071M38.712,9.435A1.628,1.628,0,1,1,40.34,7.807a1.627,1.627,0,0,1-1.628,1.628m9.242,1.938A3.566,3.566,0,1,1,51.52,7.807a3.565,3.565,0,0,1-3.566,3.566m9.232-1.938a1.628,1.628,0,1,1,1.628-1.628,1.627,1.627,0,0,1-1.628,1.628" transform="translate(-30.511)" fill="#0446c4"/>
+                                                        <path id="Path_8033" data-name="Path 8033" d="M125.915,159.61a.631.631,0,0,1-.557.332.622.622,0,0,1-.3-.075l-3.888-2.067.311.021h.021c.739.032,1.467.043,2.206.043h.257l1.681.9a.624.624,0,0,1,.268.846" transform="translate(-108.194 -140.9)" fill="#0446c4"/>
+                                                    </g>
+                                                </svg>
+                                                <span>Ücret ve paket bilgisi almak istiyorum</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="talepTuru" id="talep6" value="Embriyolarımın saklanması / uzatılması ile ilgili işlem yapmak istiyorum">
+                                            <label class="custom-radio-card w-100 m-0" for="talep6">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="42.489" height="47" viewBox="0 0 42.489 47">
+                                                    <g id="Group_1384" data-name="Group 1384" transform="translate(0)">
+                                                        <path id="Path_8034" data-name="Path 8034" d="M40.929,30.3l-3.361,1.3-4.162-2.4,3.817-1.481a1.145,1.145,0,1,0-.828-2.135l-5.534,2.147-4.285-2.474V21.743l4.285-2.474,5.534,2.147a1.145,1.145,0,1,0,.828-2.135L33.405,17.8l4.162-2.4,3.361,1.3a1.145,1.145,0,1,0,.828-2.135l-1.645-.638,1.064-.614a1.145,1.145,0,1,0-1.145-1.983l-1.064.614.27-1.744a1.145,1.145,0,1,0-2.263-.35l-.551,3.563-4.162,2.4.626-4.046a1.145,1.145,0,1,0-2.263-.35l-.908,5.865L25.431,19.76,22.389,18V13.056l4.626-3.719A1.145,1.145,0,1,0,25.58,7.552l-3.191,2.565V5.312L25.2,3.053a1.145,1.145,0,0,0-1.435-1.785L22.389,2.374V1.145a1.145,1.145,0,0,0-2.29,0V2.374L18.724,1.268a1.145,1.145,0,0,0-1.435,1.785L20.1,5.312v4.806L16.908,7.552a1.145,1.145,0,1,0-1.435,1.785L20.1,13.056V18L17.056,19.76l-4.285-2.474-.908-5.865a1.145,1.145,0,0,0-2.263.35l.626,4.046-4.162-2.4L5.513,9.852a1.145,1.145,0,1,0-2.263.35l.27,1.744-1.064-.614a1.145,1.145,0,1,0-1.145,1.983l1.064.614L.73,14.566A1.145,1.145,0,1,0,1.559,16.7L4.92,15.4l4.162,2.4L5.265,19.281a1.145,1.145,0,1,0,.828,2.135l5.534-2.147,4.285,2.474v3.514l-4.285,2.474L6.093,25.584a1.145,1.145,0,1,0-.828,2.135L9.082,29.2,4.92,31.6,1.559,30.3A1.145,1.145,0,1,0,.73,32.434l1.645.638-1.064.614a1.145,1.145,0,1,0,1.145,1.983l1.064-.614L3.25,36.8a1.145,1.145,0,1,0,2.263.35l.551-3.563,4.162-2.4L9.6,35.229a1.145,1.145,0,1,0,2.263.35l.908-5.865,4.285-2.474L20.1,29v4.948l-4.626,3.719a1.145,1.145,0,1,0,1.435,1.785L20.1,36.882v4.806l-2.81,2.259a1.145,1.145,0,0,0,1.435,1.785L20.1,44.626v1.229a1.145,1.145,0,1,0,2.29,0V44.626l1.375,1.105A1.145,1.145,0,0,0,25.2,43.947l-2.81-2.259V36.882l3.191,2.565a1.145,1.145,0,1,0,1.435-1.785l-4.626-3.719V29l3.043-1.757,4.285,2.474.908,5.865a1.145,1.145,0,1,0,2.263-.35l-.626-4.046,4.162,2.4.551,3.563a1.145,1.145,0,1,0,2.263-.35l-.27-1.744,1.064.614a1.145,1.145,0,0,0,1.145-1.983l-1.064-.614,1.645-.638a1.145,1.145,0,0,0-.828-2.135M24.287,25.257l-3.043,1.757L18.2,25.257V21.743l3.043-1.757,3.043,1.757Z" transform="translate(0.001)" fill="#59cefc"/>
+                                                    </g>
+                                                </svg>
+                                                <span>Embriyolarımın saklanması / uzatılması ile ilgili işlem yapmak istiyorum</span>
+                                            </label>
+                                        </div>
+                                    </div>
+        
+                                    <div class="mb-4">
+                                        <textarea class="form-control custom-input custom-textarea" name="kisaAciklama" rows="5" placeholder="Farklı bir konuda yazıyorum"></textarea>
+                                    </div>
+        
+                                    <h4 class="section-title">Kişisel Bilgileriniz</h4>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control custom-input" name="ad" placeholder="Ad :" required>
+                                            <div class="invalid-feedback">Lütfen adınızı giriniz.</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control custom-input" name="soyad" placeholder="Soyad :" required>
+                                            <div class="invalid-feedback">Lütfen soyadınızı giriniz.</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="tel" class="form-control custom-input phone-input" name="gsm" placeholder="GSM :" required>
+                                            <div class="invalid-feedback">Lütfen telefon numaranızı giriniz.</div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="iletisimTercihi" id="tercih1" value="Telefonla aranmak istiyorum" required>
+                                            <label class="btn-action-label btn-red w-100 cursor-pointer" for="tercih1" style="cursor: pointer;">
+                                                Telefonla Aranmak İstiyorum
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <input type="radio" class="btn-check" name="iletisimTercihi" id="tercih2" value="WhatsApp mesajı gönderin">
+                                            <label class="btn-action-label btn-dark-green w-100 cursor-pointer" for="tercih2" style="cursor: pointer;">
+                                                WhatsApp ile Bilgilendirilmek İstiyorum
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4 col-12">
+                                            <button type="submit" class="btn-action-label btn-blue w-100" id="submitBtn">
+                                                Gönder
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="ta-testimonials">
+            <div class="custom-container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-6 col-xl-8">
+                        <div class="head">
+                            <div class="title">Hasta Yorumları</div>
+                            <div class="text">Hastalarımızın deneyimleri ve geri bildirimleri, sunduğumuz sağlık hizmetinin en değerli göstergelerinden biridir. Tedavi süreçlerini bizimle yaşayan hastalarımızın paylaştığı yorumları burada inceleyebilirsiniz.</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="content">
+                            <div class="testimonial-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    S*** Ç***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Tavsiye Ederim. İlk Denememiz Başarılı Oldu..</div>
+                                            <div class="item-comment">
+                                                Kendisinde tüp bebek tedavisi yaptırdık doktorumuz ve sekreteri firdevs hanım çok iyiler ve ilgilendiler. Tavsiye ederim ilk denememiz başarılı oldu...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    G*** Ö***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Tayfun Hocamızdan Çok Memnun Kaldık..</div>
+                                            <div class="item-comment">
+                                                Tayfun hocamızdan çok memnun kaldık. Çok ilgili bir doktor. Bize yeterince zaman ayırdı ve bebeğimizin sağlığı ile ilgili detaylı şekilde bilgi alabildik. Çok teşekkür ederiz.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    N*** Ö***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">İyi ki Tanıdım Kendisini..</div>
+                                            <div class="item-comment">
+                                                Bu perşembe ilk kez gittim ben hocama hatta hocamın kendisinden randevu talep edip te vazgeçip ertesi gün beni kırmadan nezaketle kabul eden bir hoca (etmeyebilirdi de egosu tavan yapan nice insanlar var) ...Bir tane çocuğum var ikincisi de hayırlısıyla olur mu olmaz mi Allahın bileceği bir şey ....Ama hayatımda gördüğüm en ilgili merhametli güler yüzlü sizi sonuna kadar sabırla dinleyen ve sizi istediğiniz aklınıza takılan her konuda bilgilendiren bir dr Tayfun Alper hocam ....psikiyatri dru gibi de valla öyle moral oldu ki bana sağolsun.....iyi ki tanıdım kendisini ...Allah uzun bir ömür versin hocama böyle değerli insanlar az bulunuyor.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    E*** D***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Harika Bir İnsan. Harika Bir Doktor..</div>
+                                            <div class="item-comment">
+                                                Harika bir insan...Harika bir doktor. Samsun da Tayfun hocam gibi bir doktorun bulunması, bizler için çok büyük bir şans...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    E*** K***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Görüşmediğim Hekim Kalmamıştı..</div>
+                                            <div class="item-comment">
+                                                Herkese merhaba ben tayfun hocam dan nasıl memnun kaldığımi burada yazsam çok uzun olur kızım 45 milyon da görünen vajinal yokluğu tanısı ile 3 ay bir süre içinde turkiyede neredeyse görüşmedigim hekim kalmamıştı 2 kere üniversite hastanesinde başarırız olunmuştu son tanı kızınız kiritik vaka idi başka bir hekimin epikiriz lerini inceleyip bizi bunu en iyi tayfun bey değerlendirir demesi ile çok şükür tayfun hocamız ile tanıştık ilk anda ki yaklaşımı size en iyi güveni veriyor ve mesleğine saygı duyan bir hekim en iyi şekilde yapan kızım şimdi çok sağlık li ve kiritik denileni yaptı hocam her duam da siniz allah'ım sizden binkere razı olsun iyiki varsınız çalışma arkadaşları ve firdevs hanım kızıma abla gibi yaklaşımı sizin gibi iyi yürekli mesleğini severek yapan sadece sağlık diyen hekimlerimizi rabbim başımızdan eksik etmesin hepinize çok teşekkür ediyorum
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    H*** Y***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Engin Deneyim ve Tecrübesiyle Kız Bebeğimizi Kucağımıza Aldık..</div>
+                                            <div class="item-comment">
+                                                Yaşar Tayfun hocam çok iyi bir insan ben Tokattan geldim 05.03..2018 de transfer yapıldı çok şükür elhamdülillah Allahın izni ve hocamızın engin deneyim ve tecrübesiyle kız bebeğimizi kucağımıza aldık çok mutluyuz Allah hocamızdan ve emeği geçen tüm personelden Allah razı olsun hocamıza sevgi ve saygılar sunarım.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    Ş*** A***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Uzmanlık Alanında En İyi Doktorlardan..</div>
+                                            <div class="item-comment">
+                                                Yaşar tayfun alper gidebileceğiniz ender kadın doğum doktorlarından birisidir. Alanında en iyi doktorlardan. Hamile olduğum dönem doktor arayışımız sürerken tavsiye üzerine kendisine gitmiş ve çok memnun kalmıştım. Tüm yardımları ve desteği için kendisine minnettarım. Allah razı olsun
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="item-image-with-symbol">
+                                                <div class="item-image">
+                                                    <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                                </div>
+                                                <div class="item-symbol">
+                                                    <i class="fa-solid fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-fullname-with-voted">
+                                                <div class="item-fullname">
+                                                    L*** Ö***
+                                                </div>
+                                                <div class="item-voted">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="item-subject">Gerçekten Çok İyi Bir Kadın Doğum Doktoru..</div>
+                                            <div class="item-comment">
+                                                Merhabalar. Yaşar beye kontrollerim için gittim zamanında. Gerçekten çok iyi bir kadın doğum doktoru. Çok ilgili ve yardımsever. Aklınıza takılan tüm soruları yanıtlayan ve hiç soru işareti bırakmayan bir hekim. Samsun'da kadın doğum doktoru arayan herkese öneriyorum prof. dr. yaşar tayfun alper'i. Teşekkürler.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev"><i class="fa-solid fa-long-arrow-left"></i></div>
+                                <div class="swiper-button-next"><i class="fa-solid fa-long-arrow-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		<!-- Section -->
+		<footer class="ta-footer">
+            <div class="top">
+                <div class="custom-container">
+                    <div class="row">
+                        <div class="col-xl-4 col-xxl-3 col-lg-4 col-sm-6">
+                            <a href="#" class="logo-area">
+                                <img src="/img/logo-light.svg" alt="img" class="img-fluid">
+                            </a>
+                            <div class="information-area">
+                                Mutluluk, insanın sevdiği işi yapması değil,&nbsp;<br>yaptığı işi sevmesidir.
+                            </div>
+                            <ul class="social-area">
+                                <li><a href="https://www.facebook.com/tayfun.alper.9" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="https://tr.linkedin.com/in/profdrtayfunalper" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.instagram.com/prof.dr.tayfunalper" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="https://www.youtube.com/@Prof.Dr.Ya%C5%9FarTayfunAlper" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-8 col-xxl-9 col-lg-8 col-sm-6">
+                            <div class="menu-area">
+                                <ul class="menu">
+                                    <li class="title">Hakkımda</li>
+                                    <li><a href="/biyografi.html">Biyografi</a></li>
+                                    <li><a href="/randevu.html">Randevu Al</a></li>
+                                </ul>
+                                <ul class="menu">
+                                    <li class="title">İlgi Alanları</li>
+                                    <li><a href="/infertilite.html">Infertilite</a></li>
+                                    <li><a href="/tup-bebek.html">Tüp Bebek</a></li>
+                                    <li><a href="https://ftip.com.tr" target="_blank">Fonksiyonel Tıp</a></li>
+                                    <li><a href="/gebelik-usg-ultrasonla-muayene-usg-neyi-gosterir.html">Gebelik USG</a></li>
+                                </ul>
+                                <ul class="menu">
+                                    <li class="title">İletişim</li>
+                                    <li><a href="mailto:bilgi@tayfunalper.com"><i class="fa-solid fa-envelope me-2"></i> bilgi@tayfunalper.com</a></li>
+                                    <li><a href="https://wa.me/905396620036"><i class="fa-brands fa-whatsapp me-2"></i> WhatsApp</a></li>
+                                    <li><a href="https://maps.app.goo.gl/BVki2E7qmePjLFWx9"><i class="fa-solid fa-map-marker-alt me-2"></i> Mimarsinan, Alparslan Blv. No:17, 55200 Atakum/Samsun</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="custom-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="copyright-area">
+                                © 2026 Prof. Dr. Tayfun Alper. Tüm hakları saklıdır.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+	</main>
+
+	<!-- Vendor Bundle (Webpack - includes jQuery, Bootstrap, FontAwesome, Select2, Flatpickr) -->
+	<script src="/js/bundle.js"></script>
+	<!-- Current Page -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.phone-input').mask('0 (000) 000 00 00', {
+                placeholder: "0 (___) ___ __ __"
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            const WEBHOOK_URL_PROD = 'https://n8n.ftip.tr/webhook/ff56c03c-7ffd-47d0-8fbc-79ca9a6f3617';
+            $('#appointmentForm').on('submit', function(e) {
+                e.preventDefault();
+				
+				if (!$("input[name='iletisimTercihi']:checked").val()) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Eksik Seçim',
+                        text: 'Lütfen bir iletişim tercihi (Telefon veya WhatsApp) seçiniz.',
+                        confirmButtonColor: '#0d12a6',
+                        confirmButtonText: 'Tamam'
+                    });
+                    return;
+                }
+                
+                if (!this.checkValidity()) {
+                    $(this).addClass('was-validated');
+                    return;
+                }
+
+                const $submitBtn = $('#submitBtn');
+                const originalBtnText = $submitBtn.text();
+                $submitBtn.text('Gönderiliyor...').prop('disabled', true);
+
+                const payload = {
+                    talepTuru: $("input[name='talepTuru']:checked").val(),
+                    kisaAciklama: $("textarea[name='kisaAciklama']").val() || "",
+                    adSoyad: $("input[name='ad']").val().trim() + " " + $("input[name='soyad']").val().trim(),
+                    telefon: $("input[name='gsm']").val().trim(),
+                    iletisimTercihi: $("input[name='iletisimTercihi']:checked").val(),
+                    kaynak: "website-followup-form",
+                    submittedAt: new Date().toISOString()
+                };
+
+                // jQuery AJAX ile gönderim
+                $.ajax({
+                    url: WEBHOOK_URL_PROD,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(payload),
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Başarılı!',
+                            text: 'Talebiniz başarıyla alınmıştır.',
+                            confirmButtonColor: '#173b37',
+                            confirmButtonText: 'Tamam'
+                        });
+                        // İsteğe bağlı: Formu temizle
+                        $('#appointmentForm')[0].reset();
+                        $('#appointmentForm').removeClass('was-validated');
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata!',
+                            text: 'Gönderim sırasında bir hata oluştu. Lütfen tekrar deneyiniz.',
+                            confirmButtonColor: '#B01C4A',
+                            confirmButtonText: 'Tamam'
+                        });
+                        console.error("Webhook Error: ", error);
+                    },
+                    complete: function() {
+                        $submitBtn.text('Gönder').prop('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

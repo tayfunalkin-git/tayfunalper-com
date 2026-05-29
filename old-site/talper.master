@@ -1,0 +1,149 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="talper.master.cs" Inherits="talper" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prof.Dr. Tayfun ALPER - Kadın Hastalıkları ve Doğum Uzmanı</title>
+     <meta name="robots" content="index, follow" />
+    <meta name="description" id="dsc" runat="server" content="" />
+    <meta name="keywords" id="kw" runat="server" content="" />
+    <meta name="revisit-after" content="2" />
+    <meta name="reply-to" content="y_tayfun_alper@yahoo.com" />
+
+	
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143563599-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143563599-1');
+  
+</script>
+
+  
+    <link rel="stylesheet" href="themekit/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="themekit/css/style.css">
+    <link rel="stylesheet" href="themekit/css/glide.css">
+    <link rel="stylesheet" href="themekit/css/magnific-popup.css">
+    <link rel="stylesheet" href="themekit/css/content-box.css">
+    <link rel="stylesheet" href="themekit/css/contact-form.css">
+    <link rel="stylesheet" href="themekit/css/media-box.css">
+        <link rel="stylesheet" href="themekit/css/social.css">
+    <link rel="stylesheet" href="skin.css"> 
+        <link rel="icon" href="grafik/favicon.png">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+            <div id="preloader"></div>
+    <nav class="menu-top-logo menu-fixed" data-menu-anima="fade-in">
+        <div class="container">
+            <div class="menu-brand">
+                <a href="Default.aspx">
+                    <img class="logo-default scroll-hide" src="media/logo2.png" alt="logo"  />
+                    <img class="logo-retina scroll-hide" src="media/logo2.png" alt="logo"  />
+                    <img class="logo-default scroll-show" src="media/logo2.png" alt="logo"   />
+                    <img class="logo-retina scroll-show" src="media/logo2.png" alt="logo"  />
+                </a>
+            </div>
+            <i class="menu-btn"></i>
+         
+            <div class="menu-cnt" id="menum" runat="server"></div>
+
+
+        </div>
+          
+
+    </nav>  
+         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+   
+    <i class="scroll-top-btn scroll-top show"></i>
+    <footer class="light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="grafik/logo2.png" width="200" />
+                     <hr class="space-sm" />
+                    <div class="icon-links icon-social icon-links-grid social-colors">
+                        <a class="facebook" href="https://www.facebook.com/tayfun.alper.9" target="_blank" ><i class="icon-facebook"></i></a>
+                        <a class="instagram" href="https://www.instagram.com/prof.dr.tayfunalper/" target="_blank" ><i class="icon-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <h3>DİĞER WEB SİTELERİM</h3>
+                    <ul class="icon-list icon-line" id="siteler" runat="server">
+                       
+                       
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <ul class="text-list text-list-line">
+                       
+                        <li><b>E-Posta</b><hr /><p><a href="mailto://bilgi@tayfunalper.com">bilgi@tayfunalper.com</a></p></li>
+                        <li><b>WhatsApp Hattı</b><hr /><p><a href="https://api.whatsapp.com/send?phone=905396620036">0(539) 662 00 36</a></p></li>
+                        <li><b>Adres/Konum</b><hr /><p><a href="http://www.tayfunalper.com/icerik-Adres-konum.aspx">Harita</a></p></li>
+
+
+                        
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <div class="container">
+                <span>© 2020 tayfunalper.com</span>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <link rel="stylesheet" href="themekit/media/icons/iconsmind/line-icons.min.css">
+        <script src="themekit/scripts/jquery.min.js"></script>
+        <script src="themekit/scripts/main.js"></script>
+        <script src="themekit/scripts/parallax.min.js"></script>
+        <script src="themekit/scripts/glide.min.js"></script>
+        <script src="themekit/scripts/magnific-popup.min.js"></script>
+        <script src="themekit/scripts/tab-accordion.js"></script>
+        <script src="themekit/scripts/imagesloaded.min.js"></script>
+        <script src="themekit/scripts/progress.js" async></script>
+        <script src="themekit/scripts/custom.js" async></script>
+        <script src="themekit/scripts/contact-form/contact-form.js" async></script>
+             <script src="themekit/scripts/social.min.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+                $("#arama").keyup(function () {
+                    var url = 'https://www.tayfunalper.com/arama-sonuclari.aspx?' + this.value;
+                    window.location.href = url;
+                });
+            })
+
+
+
+        </script>
+
+
+     
+
+
+
+
+    </footer>
+      
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,570 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Collections;
+using System.Net.Mail;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
+
+
+/// <summary>
+/// Summary description for gelisim_student_class
+/// </summary>
+public class ebebaba_connect_class
+{
+	public ebebaba_connect_class()
+	{
+		//
+		// TODO: Add constructor logic here
+		//
+	}
+
+    //public string adresal(int gelen)
+    //{
+    //    string adres = "<font face = 'Arial' color = '#666666'><b>Ebebaba Özel Saðlýk Hizmetleri Tic.Ltd.Þti</b>";
+    //    adres = adres + "<br>" + "Adres  :Ýstiklal Caddesi No : 35   SAMSUN";
+    //    adres = adres + "<br>" + "Tel    :0.362.431 8000";
+    //    adres = adres + "<br>" + "Fax    :0.362.435 5155";
+    //    adres = adres + "<br>" + "E-Mail :info@ebebaba.com - talper@omu.edu.tr</font>";
+
+
+    //    return adres;
+
+    
+    
+    //}
+
+
+    public string deveYazimi(string gelen)
+    {
+        try
+        {
+
+            string[] dizi = gelen.Split(' ');
+            string donus = "";
+            if (dizi.Length == 1)
+            {
+                donus = dizi[0].Substring(0, 1).ToUpper() + dizi[0].Substring(1, dizi[0].Length - 1).ToLower();
+            }
+            else
+            {
+                foreach (string ic in dizi)
+                {
+                    donus += ic.Substring(0, 1).ToUpper() + ic.Substring(1, ic.Length - 1).ToLower() + " ";
+                }
+
+                donus = donus.Substring(0, donus.Length - 1);
+
+            }
+            return donus;
+        }
+        catch
+        {
+            return "";
+        }
+    }
+
+
+
+    public DateTime tarihcevir(string gelen)
+    {
+
+        try
+        {
+
+            string yenitarih = "";
+
+
+            if (gelen.Length == 6)
+            {
+
+                int yil2 = int.Parse("19" + gelen.Substring(4, 2));
+                yenitarih = gelen.Substring(0, 2) + "." + gelen.Substring(2, 2) + "." + yil2.ToString();
+
+            }
+
+            else if (gelen.Length == 10)
+            {
+
+                yenitarih = gelen.ToString();
+
+            }
+
+            return DateTime.Parse(yenitarih.Substring(0, 10));
+
+
+        }
+
+        catch
+        {
+
+            return DateTime.Now.Date;
+
+
+
+        }
+
+
+    }
+
+
+
+    public DateTime tarihcevir2(string gelen)
+    {
+
+        try
+        {
+
+            string yenitarih = "";
+
+
+            if (gelen.Length == 6)
+            {
+
+                int yil2 = int.Parse("20" + gelen.Substring(4, 2));
+                yenitarih = gelen.Substring(0, 2) + "." + gelen.Substring(2, 2) + "." + yil2.ToString();
+
+            }
+
+            else if (gelen.Length == 10)
+            {
+
+                yenitarih = gelen.ToString();
+
+            }
+
+            return DateTime.Parse(yenitarih.Substring(0, 10));
+
+
+        }
+
+        catch
+        {
+
+            return DateTime.Now.Date.AddYears(5);
+
+        }
+
+    }
+
+
+    public  MySqlConnection connect_ebebaba(int coming)
+    {
+        //String Way = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/new_ebebaba_db.mdb");
+        //MySqlConnection connect = new MySqlConnection("DataSource=localhost;Database=new_ebebaba_db;User ID=root;Password=0301009184;");
+        MySqlConnection connect = new MySqlConnection("DataSource= 85.159.67.248;Database=talperivf;User ID=talperivf;Password=0301009184;charset=latin5");
+
+        return connect;
+    }
+    //Bu bölümler silinecek ;
+
+
+    //public MySqlConnection connect_uzak(int coming)
+    //{
+
+    //    String Way = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/new_ebebaba_db.mdb");
+
+    //    MySqlConnection connect = new MySqlConnection("DataSource=localhost;Database=senkranizasyon;User ID=root;Password=0301009184;");
+    //    MySqlConnection connect = new MySqlConnection("DataSource=89.19.29.203;Database=senkranizasyon;User ID=ebebaba;Password=0301009184;");
+
+    //    return connect;
+
+
+    //}
+
+   // Bu bölüme kadar olan yerler siliecektir.Sadece eski verilerin aktarýmýnda kullanýlan veritabaný baðlantý tümceleri
+    //public static DataTable resimlerial(string gelen)
+    //{
+
+    //    String Way = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/new_ebebaba_db.mdb");
+
+    //   MySqlConnection connect = new MySqlConnection("DataSource=89.19.29.203;Database=new_ebebaba_db;User ID=talpertuncay;Password=0301009184;");
+        
+    //    MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("Select resim from resimtab where album='" + gelen.ToString() + "'", connect);
+
+    //    DataTable ebebaba_dt = new DataTable();
+    //    ebebaba_da.Fill(ebebaba_dt);
+
+    //    return ebebaba_dt;
+
+    //}
+    public string doktor_kullanici_adi_bul(string uye_k_adi)
+    {
+
+        try
+        {
+
+            MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+            MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select uye_adi,uye_soyadi from uye_doktor where uye_k_adi ='" + uye_k_adi + "'", ebebaba_connection);
+
+            DataTable ebebaba_dt = new DataTable();
+            ebebaba_da.Fill(ebebaba_dt);
+            string ad = ebebaba_dt.Rows[0]["uye_adi"].ToString() + " " + ebebaba_dt.Rows[0]["uye_soyadi"].ToString();
+            return ad;
+        }
+
+        catch
+        {
+            return "";
+        }
+        
+    
+    }
+    public string doktor_adi_bul(string uye_id)
+    {
+
+        try
+        {
+
+            MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+            MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select uye_adi,uye_soyadi from uye_doktor where uye_id =" + uye_id + "", ebebaba_connection);
+
+            DataTable ebebaba_dt = new DataTable();
+            ebebaba_da.Fill(ebebaba_dt);
+
+            string ad = ebebaba_dt.Rows[0]["uye_adi"].ToString() + " " + ebebaba_dt.Rows[0]["uye_soyadi"].ToString();
+
+            return ad;
+        }
+
+        catch
+        {
+
+
+            return "";
+
+        }
+
+
+    }
+    public string doktor_id_bul(string uye_k_adi)
+    {
+
+        try
+        {
+
+            MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+            MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select uye_id,uye_adi,uye_soyadi from uye_doktor where uye_k_adi ='" + uye_k_adi + "'", ebebaba_connection);
+
+            DataTable ebebaba_dt = new DataTable();
+            ebebaba_da.Fill(ebebaba_dt);
+            string ad = ebebaba_dt.Rows[0]["uye_id"].ToString(); 
+            return ad;
+        }
+
+        catch
+        {
+
+
+            return "";
+
+        }
+
+
+    }
+    //public string hasta_kullanici_adi_bul(string uye_k_adi)
+    //{
+
+    //    try
+    //    {
+
+
+    //        MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+    //        MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select uye_adi,uye_soyadi from uye_hasta where uye_k_adi ='" + uye_k_adi + "'", ebebaba_connection);
+
+    //        DataTable ebebaba_dt = new DataTable();
+    //        ebebaba_da.Fill(ebebaba_dt);
+    //        string ad = ebebaba_dt.Rows[0]["uye_adi"].ToString() + " " + ebebaba_dt.Rows[0]["uye_soyadi"].ToString();
+
+    //        return ad;
+    //    }
+
+    //    catch
+    //    {
+
+
+    //        return "";
+
+    //    }
+
+
+    //}
+    //public string hasta_kullanici_adi_bul2(string uye_id)
+    //{
+
+    //    try
+    //    {
+
+
+    //        MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+    //        MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select uye_adi,uye_soyadi,uye_k_adi from uye_hasta where uye_id =" + uye_id + "", ebebaba_connection);
+
+    //        DataTable ebebaba_dt = new DataTable();
+    //        ebebaba_da.Fill(ebebaba_dt);
+    //        string ad = ebebaba_dt.Rows[0]["uye_k_adi"].ToString();
+
+    //        return ad;
+    //    }
+
+    //    catch
+    //    {
+
+
+    //        return "";
+
+    //    }
+
+
+    //}
+    //public string hasta_adi_bul(string uye_id)
+    //{
+
+    //    try
+    //    {
+
+
+    //        MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+    //        MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select uye_adi,uye_soyadi from uye_hasta where uye_id =" + uye_id + "", ebebaba_connection);
+
+    //        DataTable ebebaba_dt = new DataTable();
+    //        ebebaba_da.Fill(ebebaba_dt);
+    //        string ad = ebebaba_dt.Rows[0]["uye_adi"].ToString() + " " + ebebaba_dt.Rows[0]["uye_soyadi"].ToString();
+
+    //        return ad;
+    //    }
+
+    //    catch
+    //    {
+
+
+    //        return "";
+
+    //    }
+
+
+    //}
+    public string ayadi(int gelen)
+    {
+
+        string donen = "";
+
+        if (gelen == 1)
+        {
+            donen = "Ocak";
+        }
+        if (gelen == 2)
+        {
+            donen = "Þubat";
+        }
+        if (gelen == 3)
+        {
+            donen = "Mart";
+        }
+        if (gelen == 4)
+        {
+            donen = "Nisan";
+        }
+        if (gelen == 5)
+        {
+            donen = "Mayýs";
+        }
+        if (gelen == 6)
+        {
+            donen = "Haziran";
+        }
+        if (gelen == 7)
+        {
+            donen = "Temmuz";
+        }
+        if (gelen == 8)
+        {
+            donen = "Aðustos";
+        }
+        if (gelen == 9)
+        {
+            donen = "Eylül";
+        }
+        if (gelen == 10)
+        {
+            donen = "Ekim";
+        }
+        if (gelen == 11)
+        {
+            donen = "Kasým";
+        }
+        if (gelen == 12)
+        {
+            donen = "Aralýk";
+        }
+
+        return donen;
+
+
+    }
+    public string gunadi(string gelen)
+    {
+
+        string donen = "";
+
+        if (gelen == "Sunday")
+        {
+            donen = "Pazar";
+        }
+        if (gelen == "Monday")
+        {
+            donen = "Pazartesi";
+        }
+        if (gelen == "Tuesday")
+        {
+            donen = "Salý";
+        }
+        if (gelen == "Wednesday")
+        {
+            donen = "Çarþamba";
+        }
+        if (gelen == "Thursday")
+        {
+            donen = "Perþembe";
+        }
+        if (gelen == "Friday")
+        {
+            donen = "Cuma";
+        }
+        if (gelen == "Saturday")
+        {
+            donen = "Cumartesi";
+        }
+
+        return donen;
+
+
+    }
+    //public void mailsend(string konu,string alici,string mesaj)
+
+    //{
+
+    //    try
+    //    {
+
+    //    MailMessage message = new MailMessage();
+    //    message.IsBodyHtml = true;
+    //    message.Subject = konu;
+    //    message.Body = mesaj;
+      
+
+    //        message.To.Add(alici);
+                      
+    //        message.From = new MailAddress("EBEBABA<info@ebebaba.com>");
+
+
+    //    SmtpClient server = new SmtpClient("mail.ebebaba.com");
+    //    server.Credentials = new System.Net.NetworkCredential("info@ebebaba.com", "tuncay");
+    //    server.Send(message);
+
+    //    }
+
+    //    catch
+    //    {
+
+        
+    //    }
+    
+    //}
+    public void istatistiksayfa(string IP, string sayfa, string tip)
+    {
+        if (ipkontrol(IP) == 0)
+        {
+
+            string referralUrl = "";
+            string kaynaksite = "";
+            string aramaKelimesi = "";
+            if (System.Web.HttpContext.Current.Request.ServerVariables["HTTP_REFERER"] != null &&
+                 System.Web.HttpContext.Current.Request.ServerVariables["HTTP_REFERER"].Trim() != "")
+            {
+                //burada önceki sayfanýn adresini alýyoruz. 
+                referralUrl = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_REFERER"].ToLower();
+
+                //sayfanýn adresini parse edip sitenin adýný alýyoruz. 
+                int sIndex1 = referralUrl.IndexOf("http://");
+                int eIndex1 = referralUrl.IndexOf("/", sIndex1 + 8);
+                kaynaksite = referralUrl.Substring(sIndex1, eIndex1 - sIndex1 + 1);
+
+                //eðer kaynak site google ise bu sefer arama kelimesini bulabilmek için aþaðýdaki gibi parse ediyoruz. 
+                if (kaynaksite.Contains(".google."))
+                {
+                    //google üzerinden gelmiþ.. googleda genelde arama kelimesi &q= ile baþlar ve bir sonraki & iþaretinde biter. Farklý alternatifler içinde kodu güncellemeniz gerekebilir. 
+                    int sIndex = referralUrl.IndexOf("q=");
+                    int eIndex = referralUrl.IndexOf("&", sIndex + 1);
+                    aramaKelimesi = referralUrl.Substring(sIndex + 2, eIndex - sIndex - 2);
+                    //google arama kelimesinde bazý özel karakterleri ayrýca temizlemeniz gerekiyor. Örneðin %20 yazan yeri boþluk %2f yazan yeri / ile deðiþtirmeniz gerekiyor. 
+                    //temizleme iþini size býrakýyorum. 
+                }
+            }
+
+            if (referralUrl.IndexOf("http://www.tayfunalper.com/") > 0)
+            {
+
+                referralUrl = "Site içinden";
+
+            }
+            else
+            {
+                referralUrl = referralUrl;
+
+            }
+
+
+            MySqlConnection baglanti = connect_ebebaba(0301009184);
+            MySqlCommand cmd = new MySqlCommand("Insert into istatistik(sayfa,IP,tarih,tip,ref,kaynakSite,kelime) values ('" + sayfa + "','" + IP + "','" + DateTime.Now.ToString() + "','" + tip + "','" + referralUrl + "','" + kaynaksite + "','" + aramaKelimesi + "')", baglanti);
+            baglanti.Open();
+            cmd.ExecuteNonQuery();
+            baglanti.Close();
+        }
+
+    }
+    public void istatistikkonu(string IP, string konuID, string bolumID)
+    {
+        if (ipkontrol(IP) == 0)
+        {
+            MySqlConnection baglanti = connect_ebebaba(0301009184);
+            MySqlCommand cmd = new MySqlCommand("Insert into istatistik(konuID,IP,tarih,kitapID,saat) values ('" + konuID + "','" + IP + "','" + DateTime.Now.ToShortDateString() + "'," + bolumID + ",'" + DateTime.Now.ToLongTimeString() + "')", baglanti);
+            baglanti.Open();
+            cmd.ExecuteNonQuery();
+            baglanti.Close();
+        }
+    }
+
+    public void istatistikforum(string IP, string forumID, string Forum)
+    {
+        if (ipkontrol(IP) == 0)
+        {
+            MySqlConnection baglanti = connect_ebebaba(0301009184);
+            MySqlCommand cmd = new MySqlCommand("Insert into istatistik(forumID,IP,tarih,kitapID,saat) values ('" + forumID + "','" + IP + "','" + DateTime.Now.ToShortDateString() + "','" + Forum + "','" + DateTime.Now.ToLongTimeString() + "')", baglanti);
+            baglanti.Open();
+            cmd.ExecuteNonQuery();
+            baglanti.Close();
+        }
+    }
+
+   public int ipkontrol(string gelen)
+    {
+
+      
+            MySqlConnection ebebaba_connection = connect_ebebaba(0301009184);
+            MySqlDataAdapter ebebaba_da = new MySqlDataAdapter("select * from ip_kisitlama where IP='" + gelen + "'", ebebaba_connection);
+            DataTable ebebaba_dt = new DataTable();
+            ebebaba_da.Fill(ebebaba_dt);
+            return ebebaba_dt.Rows.Count;
+       
+    }
+}

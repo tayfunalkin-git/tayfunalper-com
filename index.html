@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prof. Dr. Tayfun Alper</title>
+
+    <!-- Favicons -->
+	<link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+	<link rel="icon" href="/img/favicon.png" type="image/x-icon">
+
+	<!-- App CSS -->
+    <link rel="stylesheet" href="/css/app.min.css">
+	<!-- Vendor CSS (Webpack bundle) -->
+    <link rel="stylesheet" href="/css/vendor.min.css">
+
+	<style type="text/css">
+		.top-list-rail {
+			display: flex;
+			gap: 10px;
+			padding: 20px 2px 50px;
+			overflow-x: auto;
+			overflow-y: hidden;
+			scroll-snap-type: x mandatory;
+		}
+
+		.top-card-wrapper {
+			flex: 0 0 410px;
+			height: 350px;
+			position: relative;
+			display: flex;
+			align-items: flex-end;
+			scroll-snap-align: start;
+			outline: none;
+		}
+
+		.top-card-box {
+			margin-left: 135px;
+			width: calc(100% - 135px);
+			height: 100%;
+			position: relative;
+			z-index: 2;
+			border-radius: 24px;
+			overflow: hidden;
+			background-color: var(--card);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			cursor: pointer;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		@media (hover:hover) {
+			.top-card-wrapper:hover .top-card-box,
+			.top-card-wrapper:focus-visible .top-card-box {
+				transform: translateY(-8px);
+				border-color: rgba(255, 255, 255, 0.15);
+			}
+		}
+
+		.top-card-bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: 1;
+			transition: transform 0.5s ease;
+		}
+
+		.top-card-wrapper:hover .top-card-bg {
+			transform: scale(1.05);
+		}
+
+		.top-card-overlay {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(to top, rgba(10, 46, 114, 1) 0%, rgba(10, 46, 114, 0.9) 35%, rgba(255, 255, 255, 0.1) 100%);
+			z-index: 2;
+		}
+
+		.top-card-content {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: 24px;
+			z-index: 3;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.top-card-title {
+			font-size: 22px;
+			font-weight: 700;
+			color: #ffffff;
+			margin: 0 0 10px;
+			line-height: 1.2;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.top-card-desc {
+			font-size: 11px;
+			color: rgba(255, 255, 255, 0.8);
+			margin: 0 0 20px;
+			line-height: 1.5;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.top-card-bottom {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.top-card-duration {
+			align-self: flex-end;
+			font-size: 13px;
+			font-weight: 700;
+			color: #ffffff;
+		}
+
+		/* Kırmızı İlerleme Çubuğu */
+		.top-card-progress {
+			width: 100%;
+			height: 3px;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 2px;
+			position: relative;
+		}
+
+		.top-card-progress::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			width: 45%;
+			/* Videonun ne kadarının izlendiğini gösteren oran */
+			background: var(--blue-color);
+			border-radius: 2px;
+		}
+
+
+		.top-list-rail {
+			padding: 20px 2px 50px;
+			gap: -10px;
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+
+		.top-list-rail {
+			padding: 20px 2px 50px;
+			gap: 15px;
+			/* Kartlar arası boşluk */
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+
+		.top-card-wrapper:nth-of-type(10) .top-number{
+			left: -95px;
+			letter-spacing: -95px;
+		}
+
+		.top-card-wrapper:nth-of-type(11) .top-number{
+			left: -95px;
+			letter-spacing: -95px;
+		}
+
+		.top-card-wrapper:nth-of-type(12) .top-number{
+			left: -95px;
+			letter-spacing: -95px;
+		}
+
+		/* Dev Tırnaklı (Serif) Rakam */
+		.top-number {
+			position: absolute;
+			left: -40px;
+			bottom: -70px;
+			/* Rakamın alt hizası */
+			font-size: 485px;
+			font-family: 'Times New Roman', Times, serif;
+			/* Fotoğraftaki klasik görünüm için şart */
+			font-weight: 400;
+			line-height: 1;
+			letter-spacing: -60px;
+			color: transparent;
+			/* İçi boş */
+			-webkit-text-stroke: 1px var(--dark-blue-color);
+			/* Fotoğraftaki ince beyaz çizgi */
+			z-index: 1;
+			user-select: none;
+			pointer-events: none;
+		}
+
+		.rail {
+			position: relative;
+		}
+
+		.rail-inner {
+			display: flex;
+			gap: 12px;
+			overflow-x: auto;
+			overflow-y: visible;
+			padding: 10px 2px 36px;
+			scroll-snap-type: x mandatory;
+		}
+
+		.rail-inner.custom{
+			gap: 50px;
+		}
+
+		.rail-inner.other {
+			overflow-y: hidden;
+		}
+
+		.rail-inner::-webkit-scrollbar {
+			height: 10px
+		}
+
+		.rail-inner::-webkit-scrollbar-thumb {
+			background: rgba(255, 255, 255, .12);
+			border-radius: 999px
+		}
+		
+		.rail-inner.custom{
+			padding-bottom: 0px!important;
+			overflow-y: hidden;
+		}
+
+		.rail-inner.custom::-webkit-scrollbar-thumb {
+			background: transparent;
+			border-radius: 999px
+		}
+
+		.rail-inner::-webkit-scrollbar-track {
+			background: transparent
+		}
+
+		/* Responsive */
+		@media (max-width: 1400px){
+			.top-list-section{
+				padding-left: 115px !important;
+			}
+		}
+
+		@media (max-width: 1199px){
+			.top-list-section{
+				padding-left: 50px !important;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.top-list-section{
+				padding-left: 30px !important;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.top-list-section{
+				padding-left: 0px !important;
+			}
+		}
+  	</style>
+
+</head>
+<body>
+
+    <!-- Main -->
+	<main class="app">
+
+		<!-- Section -->
+		<header class="ta-header">
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-xl">
+                    <a class="navbar-brand logo-content" href="/index.html">
+                        <img src="/img/logo-dark.svg" data-dark="/img/logo-dark.svg" data-light="/img/logo-light.svg" class="logo" alt="logo">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="mobileMenuBtn fa-solid fa-bars fs-16"></i>
+                    </button>
+                    <div class="collapse navbar-collapse align-items-xl-end justify-content-xl-end flex-xl-column menu-content" id="navbarMenu">
+                        <div class="close d-flex d-xl-none cursor-pointer" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                        <div class="menu-logo d-flex d-xl-none">
+                            <img src="/img/logo-light.svg" class="logo" alt="logo">
+                        </div>
+                        <div class="randevu-desktop d-none d-xl-flex">
+                            <a class="btn-blue rounded" href="/randevu.html">RANDEVU AL</a>
+                        </div>
+                        <ul class="navbar-nav mainMenu clearfix">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/biyografi.html">Biyografi</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Infertilite
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-start">
+                                    <li><a class="dropdown-item" href="/infertilite.html">Infertilite</a></li>
+                                    <li><a class="dropdown-item" href="/infertilite-hastalik-genital-organlarin-dogustan-yoklugu.html">Hastalıklar</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Tüp Bebek
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-start">
+                                    <li><a class="dropdown-item" href="/tup-bebek.html">Tüp Bebek</a></li>
+                                    <li><a class="dropdown-item" href="/tup-bebek-tedavi-basamaklari-adayligin-kabulu.html">Tedavi Basamakları</a></li>
+                                    <li><a class="dropdown-item" href="/tup-bebek-gebelik-asamalari-gebelik-testi-tekrari.html">Gebelik Aşamaları</a></li>
+                                    <li><a class="dropdown-item" href="/tup-bebek-tup-bebek-videosu.html">Tüp Bebek Videosu</a></li>
+                                    <li><a class="dropdown-item" href="https://www.tupbebekcevaplari.com" target="_blank">Sıkça Sorulan Sorular</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://ftip.com.tr" target="_blank">Fonksiyonel Tıp</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Gebelik USG
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-start">
+                                    <li><a class="dropdown-item" href="/gebelik-usg-ultrasonla-muayene-usg-neyi-gosterir.html">Ultrasonla Muayene</a></li>
+                                    <li><a class="dropdown-item" href="/gebelik-usg-haftalara-gore-ilk-gebelik-muayenesi.html">Haftalara Göre</a></li>
+                                    <li><a class="dropdown-item" href="/gebelik-usg-renkli-ultrason-ultrason-tipleri.html">Renkli Ultrason</a></li>
+                                    <li><a class="dropdown-item" href="/gebelik-usg-sistemlere-gore-anomaliler-kafa-beyin.html">Sistemlere Göre Anomaliler</a></li>
+                                    <li><a class="dropdown-item" href="/gebelik-usg-diger-anomaliler-su-azligi-fazlaligi.html">Diğer Anomaliler</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item randevu-mobile d-inline-flex d-xl-none">
+                                <a class="btn-blue rounded" href="/randevu.html">RANDEVU AL</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="menu-overlay d-xl-none"></div>
+</header>
+
+		<!-- Section -->
+		<section class="ta-hero">
+			<img src="/img/others/hero-bg.png" alt="img" class="img-fluid cover">
+			<div class="custom-container">
+				<div class="row">
+					<div class="col-xl-7 col-xxl-8">
+						<div class="content">
+							<div class="top">
+								<div class="title">
+									Hangi meslek ile bir yaşam geçirmek isterdin deseler,
+									“Hekimlik ve öğretmenlik” derdim…&nbsp;<br>
+									Şükür ikisi de nasip oldu.
+								</div>
+								<div class="text">Mesleğimde çok uzun süredir sadece sevdiğim alanlarda çalışabilme lüksünü yaşıyorum. Gebelikteki ayrıntılı ultrason muayenesini baştan beri zevkle yaptım, halen devam ediyorum. Günlük mesaimin çoğunluğu Tüp Bebek zaten. Son sevdam Fonksiyonel Tıp… </div>
+								<div class="author">
+									<div class="fullname">Prof. Dr. Tayfun Alper</div>
+									<div class="jobname">Kadın Hastalıkları ve Doğum Uzmanı</div>
+								</div>
+							</div>
+							<div class="bottom">
+								<ul class="social">
+									<li><a href="https://www.facebook.com/tayfun.alper.9" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+									<li><a href="https://tr.linkedin.com/in/profdrtayfunalper" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+									<li><a href="https://www.instagram.com/prof.dr.tayfunalper" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+									<li><a href="https://www.youtube.com/@Prof.Dr.Ya%C5%9FarTayfunAlper" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-5 col-xxl-4">
+						<div class="image">
+							<img src="/img/others/hero-image.png" alt="img" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="top-list-section">
+			<div class="custom-container">
+				<div class="row justify-content-center">
+					<div class="col-xxl-6 col-xl-8">
+						<div class="head">
+							<div class="title">Tüp Bebek TV Programları</div>
+							<div class="text">Anne baba olma hayalinize giden bu özel yolculukta, süreçten başarı oranlarına kadar aklınızdaki tüm soruların cevaplarını keşfedin.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="rail">
+				<div class="rail-inner custom top-list-rail" id="top13-container"></div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="ta-workarea">
+			<div class="custom-container">
+				<div class="row justify-content-center">
+					<div class="col-xxl-6 col-xl-8">
+						<div class="head">
+							<div class="title">İlgi Alanları</div>
+							<div class="text">Kadın hastalıkları ve doğum alanında geniş bir uzmanlığa sahip olan Prof. Dr. Tayfun Alperen; infertilite, tüp bebek tedavileri, gebelik takibi, ileri düzey gebelik ultrasonografisi ve fonksiyonel tıp uygulamaları üzerine çalışmalar yürütmektedir.</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="content">
+							<div class="row g-4 d-none d-sm-flex">
+								<div class="col-xl-3 col-sm-6">
+									<a href="/infertilite.html" class="item">
+										<div class="item-icon">
+											<svg xmlns="http://www.w3.org/2000/svg" width="124.221" height="96.755" viewBox="0 0 124.221 96.755">
+												<g id="Group_7" data-name="Group 7" transform="translate(0 0)">
+													<g id="Group_8" data-name="Group 8">
+													<path id="Path_84" data-name="Path 84" d="M124.221,15.389V20a18.971,18.971,0,0,1-9.662,13.542c-.618,3.3-2.361,6.464-5.545,7.854l-4.2,1.833a9.92,9.92,0,0,1-8.153-18.062c5.263-2.629,8.7-3.967,14.11-.589,4.234-2.139,5.141-8.168,2.379-11.806a8.319,8.319,0,0,0-12.143-1.193L89.3,21.521c-.692.857-.519,2.6-.368,3.6.86,5.72,2.515,11.12-1.982,15.845l-4.467,4.691A10.634,10.634,0,0,0,80,55.935a10.824,10.824,0,0,1-.549,7.6c-1.779,3.3-5.595,5.7-5.6,9.246L73.84,94.7a1.956,1.956,0,0,1-1.874,2.056H52.291A1.946,1.946,0,0,1,50.44,94.7l-.031-22.209c0-3.131-4.112-6.042-5.665-9.1a11.207,11.207,0,0,1-.439-7.66,10.366,10.366,0,0,0-2.415-9.951L37.422,41.08A11.231,11.231,0,0,1,34.4,31.532l1.04-7.189c.116-.809.039-2.39-.62-2.944L22.678,11.182c-3.668-3.088-9.334-1.857-11.85,2.005-2.422,3.72-1.39,9.365,2.695,11.4,3-1.948,6.706-2.728,10.093-1.212l4.024,1.8c4.954,2.219,6.724,8.342,4.4,13.129A9.988,9.988,0,0,1,19.1,43.1c-5.663-2.41-7.707-3.2-9.518-9.5C4.8,30.5,1.146,26.344.217,20.478a17.744,17.744,0,0,1,8.9-18.265A17.9,17.9,0,0,1,29.45,4.4l11.574,9.785a8.309,8.309,0,0,0,9.018,1.055,29.833,29.833,0,0,1,24.169-.006,8.4,8.4,0,0,0,9.168-1.138l11.584-9.81A17.768,17.768,0,0,1,113.6,1.454a18.251,18.251,0,0,1,10.625,13.935M69.387,46.482c-2.451,9.576-2.926,21.537-2.72,31.48l.311,14.914,2.983-.069.018-20.176a10.918,10.918,0,0,1,2.722-6.67c2.71-3.456,4.707-4.282,3.5-9.3a14.364,14.364,0,0,1,2.981-13.1c3.687-4.336,7.636-6.252,6.845-11.753L84.991,24.6c-.282-1.964.042-4.5,1.618-5.846L98.647,8.512a12.1,12.1,0,1,1,14.9,19.04,1.747,1.747,0,0,0,.629,1.6A13.786,13.786,0,1,0,97.853,6.979l-12.1,10.179c-3.8,3.2-8.659,3.557-13.18,1.6a25.8,25.8,0,0,0-20.879.009,12.365,12.365,0,0,1-13.323-1.72L26.117,6.78c-6.076-5.091-15.255-3.357-19.7,2.956a13.806,13.806,0,0,0,3.732,19.457,4.813,4.813,0,0,0,.7-1.574A12.09,12.09,0,1,1,25.48,8.4L37.538,18.636c1.631,1.384,2.042,3.911,1.748,5.971l-1.032,7.255c-.775,5.428,3.182,7.41,6.833,11.68A14.329,14.329,0,0,1,48.07,56.664c-1.2,4.967.783,5.812,3.388,9.142,1.483,1.894,2.827,4.063,2.831,6.582l.034,20.395a18.1,18.1,0,0,0,3,.01l.293-15.076c.112-5.742-.033-11.272-.47-16.984-.6-7.923-2.129-17.129-6.112-24.006-4.024-6.946-8.142-6.491-7.83-9.058A2.277,2.277,0,0,1,44.285,26.2a33.749,33.749,0,0,1,9.7-2.9c8.4-1.2,18.206-.776,26,2.894a1.937,1.937,0,0,1,.235,3.37c-6.134,3.667-9.112,10.188-10.834,16.911m-43.8-18L21.945,26.9a6.044,6.044,0,0,0-4.924,11.034c1.3.608,2.567,1.163,3.9,1.693A6.043,6.043,0,0,0,25.59,28.485m37.487,64.2-.315-19.333a133.168,133.168,0,0,1,1.227-19.737C65.381,44.692,67.9,34.767,75.1,28.424c-7.071-2.448-18.879-2.449-25.9,0a28.629,28.629,0,0,1,7.357,10.73,63.512,63.512,0,0,1,3.8,14.865,141.666,141.666,0,0,1,1.172,20.3l-.315,18.418a3.431,3.431,0,0,0,1.868-.058m40.512-53.141,3.661-1.622a5.955,5.955,0,0,0,2.821-8.005,6.058,6.058,0,0,0-7.914-2.95L98.9,28.37a6.059,6.059,0,1,0,4.686,11.175" fill="#1a1818"/>
+													</g>
+												</g>
+											</svg>
+										</div>
+										<div class="item-title">Infertilite</div>
+									</a>
+								</div>
+								<div class="col-xl-3 col-sm-6">
+									<a href="/tup-bebek.html" class="item">
+										<div class="item-icon">
+											<svg xmlns="http://www.w3.org/2000/svg" width="132.469" height="115.595" viewBox="0 0 132.469 115.595">
+												<g id="Group_7" data-name="Group 7" transform="translate(0 0)">
+													<g id="Group_8" data-name="Group 8">
+													<path id="Path_84" data-name="Path 84" d="M0,44.1V37.111c0-12.367,7.462-23.578,18.012-30.6a38.6,38.6,0,0,1,42.1-.517,2.553,2.553,0,0,1,.7,3.6A2.6,2.6,0,0,1,57.3,10.3a33.545,33.545,0,0,0-38.879,2.316A35.5,35.5,0,0,0,5.2,39.682c-.311,14.751,7.564,27.936,17.112,38.466,1.136,1.252,1.305,2.9.12,3.994a2.66,2.66,0,0,1-3.915-.456A84.1,84.1,0,0,1,5.65,63.331,58.959,58.959,0,0,1,0,44.1" fill="#1a1818"/>
+													<path id="Path_85" data-name="Path 85" d="M70.025,23.6l4.422,6.54c3.064,4.532,3.3,9.982,2.313,15.612a12.95,12.95,0,0,1,17.06,8.268l2.049,6.686A7.752,7.752,0,0,1,87.03,70.4a21.261,21.261,0,0,1-13.518,19.56,34.492,34.492,0,0,1-27.71-.613A34.222,34.222,0,0,1,25.554,56.777a5.943,5.943,0,0,0-1.709-4.242A18.347,18.347,0,0,1,35.32,21.718c9.872-.984,19.859,5.076,19.616,15.939l-.115,5.095a10.122,10.122,0,0,1,6.918,2.719,7.8,7.8,0,0,1,10.176-2.915c1.048-8.424-3.379-11.019-6.73-17A12.987,12.987,0,0,1,66.5,10.983a21.746,21.746,0,0,1,5.674-4.927,38.716,38.716,0,0,1,42.292.467,40.706,40.706,0,0,1,17.887,30.9c.661,8.674-1.581,17.756-5.4,25.557-6.78,13.86-18.521,25.418-30.739,34.645A178.034,178.034,0,0,1,67.452,115.34a3.042,3.042,0,0,1-2.442,0A176.343,176.343,0,0,1,34.366,96.178a2.54,2.54,0,0,1-.492-3.575,2.568,2.568,0,0,1,3.6-.516,180.207,180.207,0,0,0,28.763,18.1c15.967-8.135,32.123-19.061,44.125-32.3,8.694-9.59,15.662-21.147,16.773-34.312a35.659,35.659,0,0,0-13.09-30.959,33.58,33.58,0,0,0-39.052-2.219,14.861,14.861,0,0,0-4.908,4.468,7.74,7.74,0,0,0-.061,8.744M57.837,68.246l-10.644-.228a2.571,2.571,0,0,1,.006-5.141l11.019.189a9.321,9.321,0,0,0,8.611-4.946L70.684,50.6a2.553,2.553,0,0,0-1.232-3.43,2.584,2.584,0,0,0-3.393,1.182l-3.685,7.18a4.265,4.265,0,0,1-3.9,2.367L49.7,57.725a4.884,4.884,0,0,1-4.387-2.977,4.811,4.811,0,0,1,1.107-5.37L49.1,46.87a2.653,2.653,0,0,0,.767-2.183,47.5,47.5,0,0,1-.112-7.047,9.314,9.314,0,0,0-4.019-8.288,14.206,14.206,0,0,0-14.8-.953,13.229,13.229,0,0,0-3.183,20.779,10.947,10.947,0,0,1,2.95,7.849,29.02,29.02,0,0,0,14.721,26.3,29.582,29.582,0,0,0,25.906,1.942c7.911-3.145,12.338-11.334,9.845-19.621L79.628,60.5A2.56,2.56,0,0,1,84.5,58.914L86,63.581a2.546,2.546,0,0,0,4.893-1.4l-2-6.544A7.752,7.752,0,1,0,74.09,60.231l2.219,7.159a2.581,2.581,0,1,1-4.91,1.581l-1.816-5.677a15.064,15.064,0,0,1-11.746,4.952m.192-15.518,1-2.156c-.68-1.542-2.673-2.993-4.3-2.462a47.013,47.013,0,0,1-4.05,4.45Z" fill="#1a1818"/>
+													<path id="Path_86" data-name="Path 86" d="M120.451,40.28a2.547,2.547,0,0,1-2.609,2.637,2.579,2.579,0,0,1-2.531-2.593,23.406,23.406,0,0,0-14.69-21.56,2.524,2.524,0,0,1-1.174-3.386,2.6,2.6,0,0,1,3.5-1.2,28.062,28.062,0,0,1,17.5,26.1" fill="#1a1818"/>
+													<path id="Path_87" data-name="Path 87" d="M28.175,85.4a2.606,2.606,0,0,1,2.9,2.281A2.54,2.54,0,0,1,28.8,90.519a2.645,2.645,0,0,1-2.828-2.128A2.526,2.526,0,0,1,28.175,85.4" fill="#1a1818"/>
+													<path id="Path_88" data-name="Path 88" d="M92.112,12.485a2.517,2.517,0,0,1,3.352,1.678,2.548,2.548,0,1,1-3.352-1.678" fill="#1a1818"/>
+													</g>
+												</g>
+											</svg>
+										</div>
+										<div class="item-title">Tüp Bebek</div>
+									</a>
+								</div>
+								<div class="col-xl-3 col-sm-6">
+									<a href="https://ftip.com.tr" target="_blank" class="item">
+										<div class="item-icon">
+											<svg xmlns="http://www.w3.org/2000/svg" width="80.523" height="80.521" viewBox="0 0 80.523 80.521">
+												<g id="Group_10" data-name="Group 10" transform="translate(0)">
+													<g id="Group_11" data-name="Group 11">
+													<path id="Path_89" data-name="Path 89" d="M57.092,0a3.731,3.731,0,0,1,2.517,4.622l16.215,16.3a3.73,3.73,0,0,1,4.7,2.538v1.663l-.66,1.256A13.734,13.734,0,0,1,75.02,29.86c-5.074,2.135-10.6,1.973-16.037,1.234a27.871,27.871,0,0,1-.571,13.02A21.254,21.254,0,0,1,43.567,58.642a1.193,1.193,0,1,1-.729-2.255,18.874,18.874,0,0,0,13.4-13.262,25.669,25.669,0,0,0,.239-12.461l-2.674-.576a24.464,24.464,0,0,1,.264,11.691A16.37,16.37,0,0,1,42.23,54.024a22.12,22.12,0,0,1-11.27.084l-3.662-.94c-5.882-1.51-12.615-2.671-18.607-1.107a12.964,12.964,0,0,0-5.91,3.224,1.242,1.242,0,0,0-.1,1.728,1.21,1.21,0,0,0,1.718.064A10.806,10.806,0,0,1,9.417,54.4c5.658-1.379,13.071-.066,18.643,1.546A29.908,29.908,0,0,0,37.6,57.221a1.175,1.175,0,0,1,1.179,1.194A1.2,1.2,0,0,1,37.6,59.578a35.182,35.182,0,0,1-6.564-.463c1,6.793.965,15.285-4.213,20.366a3.556,3.556,0,0,1-5.987-3.265l-3.523-3.55a1.18,1.18,0,0,1,.131-1.683,1.224,1.224,0,0,1,1.684.177l2.97,2.942a10.169,10.169,0,0,0,2.1-5.686L12.077,56.352A10.258,10.258,0,0,0,6.408,58.43l8.685,8.7a1.184,1.184,0,0,1-.042,1.758,1.2,1.2,0,0,1-1.619-.088L4.318,59.692A3.561,3.561,0,0,1,1.039,53.7a14.776,14.776,0,0,1,6.215-3.67c4.746-1.42,9.342-1.167,14.169-.553A28.112,28.112,0,0,1,21.836,37.1,21.283,21.283,0,0,1,36.664,22.032a27.931,27.931,0,0,1,12.765-.493,40.842,40.842,0,0,1-.388-9.124,1.169,1.169,0,0,1,2.331.179,39.939,39.939,0,0,0,.554,9.513l2.636.706c-.771-4.645-1.312-9.415-.039-13.9A10.894,10.894,0,0,1,57.158,4.3a1.164,1.164,0,0,0-.226-1.671,1.223,1.223,0,0,0-1.721.221c-3.135,3.29-2.358,6.093-4.36,5.346-.355-.132-.881-.683-.725-1.184A14.038,14.038,0,0,1,54.043.724L55.362,0ZM68.12,24.3c2.209-.308,4.166-.734,5.706-2.034L58.263,6.617a10.847,10.847,0,0,0-2,5.823Zm-3.3.045-8.657-8.664a42.317,42.317,0,0,0,.946,7.733,41.3,41.3,0,0,0,7.711.931M26.384,38.717a16.329,16.329,0,0,1,11.6-12.06c5.416-1.525,9.642-.7,14.9.721,7.326,1.979,18.9,3.677,24.871-2.15a1.247,1.247,0,0,0,.1-1.734,1.2,1.2,0,0,0-1.626-.126,11.47,11.47,0,0,1-5.737,2.92c-5.973,1.238-13.022-.195-18.868-1.808a26.539,26.539,0,0,0-13.465-.406,18.981,18.981,0,0,0-14.1,13.874,25.858,25.858,0,0,0-.121,11.989l2.679.577a24.14,24.14,0,0,1-.227-11.8m24.75-9.353a23.357,23.357,0,0,0-9.822-.969L52.131,39.214a23.155,23.155,0,0,0-1-9.85m-8.891,22.21a14.651,14.651,0,0,0,5-2.775L37.61,39.161a1.183,1.183,0,1,1,1.743-1.59L48.9,47.1a14.3,14.3,0,0,0,2.664-5.113L38.531,28.96a14.34,14.34,0,0,0-5.1,2.649l1.97,2.03a1.171,1.171,0,0,1-.075,1.617,1.2,1.2,0,0,1-1.568.03l-2.062-2A14.5,14.5,0,0,0,28.964,38.3Zm-2.771.566L28.353,41.021a22.452,22.452,0,0,0,.934,10.211,21.594,21.594,0,0,0,10.185.908M23.319,57.174a42.062,42.062,0,0,0-8.018-.955l9.018,8.966a41.789,41.789,0,0,0-1-8.011m4.76,15.849c1.547-4.562,1.236-9.82.452-14.505l-2.63-.706c.966,5.9,1.906,13.706-2.455,18.319a1.2,1.2,0,0,0,.068,1.72c1.765,1.566,4.1-3.454,4.565-4.828" fill="#1a1818"/>
+													</g>
+												</g>
+											</svg>
+										</div>
+										<div class="item-title">Fonksiyonel Tıp</div>
+									</a>
+								</div>
+								<div class="col-xl-3 col-sm-6">
+									<a href="/gebelik-usg-ultrasonla-muayene-usg-neyi-gosterir.html" class="item">
+										<div class="item-icon">
+											<svg xmlns="http://www.w3.org/2000/svg" width="69.291" height="57.936" viewBox="0 0 69.291 57.936">
+												<g id="Group_13" data-name="Group 13" transform="translate(0 -0.001)">
+													<g id="Group_14" data-name="Group 14">
+													<path id="Path_90" data-name="Path 90" d="M57.223,10.241l9.177-.015a2.83,2.83,0,0,1,2.886,2.857l0,4.2-3.672,7.666L65.6,32.719a3.213,3.213,0,0,1-2.556,3.2L63.043,48.45a9.454,9.454,0,0,1-9.5,9.487L33.349,57.92a9.427,9.427,0,0,1-9.32-9.444l-.018-3.547L5.494,44.924A5.412,5.412,0,0,1,0,39.487V5.46A5.406,5.406,0,0,1,5.5,0H44.876a5.394,5.394,0,0,1,5.5,5.46l.008,33.879a5.431,5.431,0,0,1-5.51,5.584l-18.51,0-.02,3.531a7.128,7.128,0,0,0,7.187,7.169l20.095-.009a7.125,7.125,0,0,0,7.1-7.177l.006-12.51a3.238,3.238,0,0,1-2.582-3.209l-.007-7.745L54.5,17.315l-.016-4.233a2.785,2.785,0,0,1,2.738-2.841M48.066,34.036l-.005-28.72a3.059,3.059,0,0,0-3.075-3.007H5.393A3.09,3.09,0,0,0,2.309,5.455l0,28.583Zm18.909-18.16.011-2.827a.691.691,0,0,0-.6-.512H57.309a.717.717,0,0,0-.519.511l.034,2.831ZM62.662,33.642c.254,0,.586-.5.627-.767l.014-8.431L66.289,18.2h-8.8l2.976,6.291,0,8.242c0,.383.319.9.714.9ZM44.947,42.608a3.014,3.014,0,0,0,3.1-2.949l-.008-3.312H2.334l-.023,3.146a3.088,3.088,0,0,0,3.348,3.123Z" fill="#1a1818"/>
+													<path id="Path_91" data-name="Path 91" d="M43.438,21.793a1.171,1.171,0,0,1-.168,1.734,29.106,29.106,0,0,1-36.164,0,1.164,1.164,0,0,1-.2-1.693L17.541,8.425a1.161,1.161,0,0,1,1.652-.22,9.679,9.679,0,0,0,11.99,0,1.161,1.161,0,0,1,1.653.229Zm-2.484.59-9.277-11.7a11.982,11.982,0,0,1-12.98,0l-9.28,11.7a26.792,26.792,0,0,0,31.537,0" fill="#1a1818"/>
+													<path id="Path_92" data-name="Path 92" d="M32.523,40.569c-1.063.146-2.52.227-2.587-1a1.113,1.113,0,0,1,.961-1.213,7.891,7.891,0,0,1,1.588.017,1.129,1.129,0,0,1,.87,1.059,1.113,1.113,0,0,1-.832,1.136" fill="#1a1818"/>
+													<path id="Path_93" data-name="Path 93" d="M19.531,40.588c-1.022.106-2.446.2-2.512-1.013a1.111,1.111,0,0,1,.883-1.2,7.946,7.946,0,0,1,1.589-.019,1.131,1.131,0,0,1,.947,1.087,1.115,1.115,0,0,1-.907,1.145" fill="#1a1818"/>
+													<path id="Path_94" data-name="Path 94" d="M26.03,40.576a9.793,9.793,0,0,1-1.5.048,1.155,1.155,0,0,1-1.058-1.068,1.12,1.12,0,0,1,.917-1.191,8.2,8.2,0,0,1,1.6,0,1.12,1.12,0,0,1,.9,1.066,1.1,1.1,0,0,1-.863,1.145" fill="#1a1818"/>
+													</g>
+												</g>
+											</svg>
+										</div>
+										<div class="item-title">Gebelik USG</div>
+									</a>
+								</div>
+							</div>
+							<div class="row d-flex d-sm-none">
+								<div class="col-12">
+									<div class="workarea-swiper">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<a href="/infertilite.html" class="item">
+													<div class="item-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="124.221" height="96.755" viewBox="0 0 124.221 96.755">
+															<g id="Group_7" data-name="Group 7" transform="translate(0 0)">
+																<g id="Group_8" data-name="Group 8">
+																<path id="Path_84" data-name="Path 84" d="M124.221,15.389V20a18.971,18.971,0,0,1-9.662,13.542c-.618,3.3-2.361,6.464-5.545,7.854l-4.2,1.833a9.92,9.92,0,0,1-8.153-18.062c5.263-2.629,8.7-3.967,14.11-.589,4.234-2.139,5.141-8.168,2.379-11.806a8.319,8.319,0,0,0-12.143-1.193L89.3,21.521c-.692.857-.519,2.6-.368,3.6.86,5.72,2.515,11.12-1.982,15.845l-4.467,4.691A10.634,10.634,0,0,0,80,55.935a10.824,10.824,0,0,1-.549,7.6c-1.779,3.3-5.595,5.7-5.6,9.246L73.84,94.7a1.956,1.956,0,0,1-1.874,2.056H52.291A1.946,1.946,0,0,1,50.44,94.7l-.031-22.209c0-3.131-4.112-6.042-5.665-9.1a11.207,11.207,0,0,1-.439-7.66,10.366,10.366,0,0,0-2.415-9.951L37.422,41.08A11.231,11.231,0,0,1,34.4,31.532l1.04-7.189c.116-.809.039-2.39-.62-2.944L22.678,11.182c-3.668-3.088-9.334-1.857-11.85,2.005-2.422,3.72-1.39,9.365,2.695,11.4,3-1.948,6.706-2.728,10.093-1.212l4.024,1.8c4.954,2.219,6.724,8.342,4.4,13.129A9.988,9.988,0,0,1,19.1,43.1c-5.663-2.41-7.707-3.2-9.518-9.5C4.8,30.5,1.146,26.344.217,20.478a17.744,17.744,0,0,1,8.9-18.265A17.9,17.9,0,0,1,29.45,4.4l11.574,9.785a8.309,8.309,0,0,0,9.018,1.055,29.833,29.833,0,0,1,24.169-.006,8.4,8.4,0,0,0,9.168-1.138l11.584-9.81A17.768,17.768,0,0,1,113.6,1.454a18.251,18.251,0,0,1,10.625,13.935M69.387,46.482c-2.451,9.576-2.926,21.537-2.72,31.48l.311,14.914,2.983-.069.018-20.176a10.918,10.918,0,0,1,2.722-6.67c2.71-3.456,4.707-4.282,3.5-9.3a14.364,14.364,0,0,1,2.981-13.1c3.687-4.336,7.636-6.252,6.845-11.753L84.991,24.6c-.282-1.964.042-4.5,1.618-5.846L98.647,8.512a12.1,12.1,0,1,1,14.9,19.04,1.747,1.747,0,0,0,.629,1.6A13.786,13.786,0,1,0,97.853,6.979l-12.1,10.179c-3.8,3.2-8.659,3.557-13.18,1.6a25.8,25.8,0,0,0-20.879.009,12.365,12.365,0,0,1-13.323-1.72L26.117,6.78c-6.076-5.091-15.255-3.357-19.7,2.956a13.806,13.806,0,0,0,3.732,19.457,4.813,4.813,0,0,0,.7-1.574A12.09,12.09,0,1,1,25.48,8.4L37.538,18.636c1.631,1.384,2.042,3.911,1.748,5.971l-1.032,7.255c-.775,5.428,3.182,7.41,6.833,11.68A14.329,14.329,0,0,1,48.07,56.664c-1.2,4.967.783,5.812,3.388,9.142,1.483,1.894,2.827,4.063,2.831,6.582l.034,20.395a18.1,18.1,0,0,0,3,.01l.293-15.076c.112-5.742-.033-11.272-.47-16.984-.6-7.923-2.129-17.129-6.112-24.006-4.024-6.946-8.142-6.491-7.83-9.058A2.277,2.277,0,0,1,44.285,26.2a33.749,33.749,0,0,1,9.7-2.9c8.4-1.2,18.206-.776,26,2.894a1.937,1.937,0,0,1,.235,3.37c-6.134,3.667-9.112,10.188-10.834,16.911m-43.8-18L21.945,26.9a6.044,6.044,0,0,0-4.924,11.034c1.3.608,2.567,1.163,3.9,1.693A6.043,6.043,0,0,0,25.59,28.485m37.487,64.2-.315-19.333a133.168,133.168,0,0,1,1.227-19.737C65.381,44.692,67.9,34.767,75.1,28.424c-7.071-2.448-18.879-2.449-25.9,0a28.629,28.629,0,0,1,7.357,10.73,63.512,63.512,0,0,1,3.8,14.865,141.666,141.666,0,0,1,1.172,20.3l-.315,18.418a3.431,3.431,0,0,0,1.868-.058m40.512-53.141,3.661-1.622a5.955,5.955,0,0,0,2.821-8.005,6.058,6.058,0,0,0-7.914-2.95L98.9,28.37a6.059,6.059,0,1,0,4.686,11.175" fill="#1a1818"/>
+																</g>
+															</g>
+														</svg>
+													</div>
+													<div class="item-title">Infertilite</div>
+												</a>
+											</div>
+											<div class="swiper-slide">
+												<a href="/tup-bebek.html" class="item">
+													<div class="item-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="132.469" height="115.595" viewBox="0 0 132.469 115.595">
+															<g id="Group_7" data-name="Group 7" transform="translate(0 0)">
+																<g id="Group_8" data-name="Group 8">
+																<path id="Path_84" data-name="Path 84" d="M0,44.1V37.111c0-12.367,7.462-23.578,18.012-30.6a38.6,38.6,0,0,1,42.1-.517,2.553,2.553,0,0,1,.7,3.6A2.6,2.6,0,0,1,57.3,10.3a33.545,33.545,0,0,0-38.879,2.316A35.5,35.5,0,0,0,5.2,39.682c-.311,14.751,7.564,27.936,17.112,38.466,1.136,1.252,1.305,2.9.12,3.994a2.66,2.66,0,0,1-3.915-.456A84.1,84.1,0,0,1,5.65,63.331,58.959,58.959,0,0,1,0,44.1" fill="#1a1818"/>
+																<path id="Path_85" data-name="Path 85" d="M70.025,23.6l4.422,6.54c3.064,4.532,3.3,9.982,2.313,15.612a12.95,12.95,0,0,1,17.06,8.268l2.049,6.686A7.752,7.752,0,0,1,87.03,70.4a21.261,21.261,0,0,1-13.518,19.56,34.492,34.492,0,0,1-27.71-.613A34.222,34.222,0,0,1,25.554,56.777a5.943,5.943,0,0,0-1.709-4.242A18.347,18.347,0,0,1,35.32,21.718c9.872-.984,19.859,5.076,19.616,15.939l-.115,5.095a10.122,10.122,0,0,1,6.918,2.719,7.8,7.8,0,0,1,10.176-2.915c1.048-8.424-3.379-11.019-6.73-17A12.987,12.987,0,0,1,66.5,10.983a21.746,21.746,0,0,1,5.674-4.927,38.716,38.716,0,0,1,42.292.467,40.706,40.706,0,0,1,17.887,30.9c.661,8.674-1.581,17.756-5.4,25.557-6.78,13.86-18.521,25.418-30.739,34.645A178.034,178.034,0,0,1,67.452,115.34a3.042,3.042,0,0,1-2.442,0A176.343,176.343,0,0,1,34.366,96.178a2.54,2.54,0,0,1-.492-3.575,2.568,2.568,0,0,1,3.6-.516,180.207,180.207,0,0,0,28.763,18.1c15.967-8.135,32.123-19.061,44.125-32.3,8.694-9.59,15.662-21.147,16.773-34.312a35.659,35.659,0,0,0-13.09-30.959,33.58,33.58,0,0,0-39.052-2.219,14.861,14.861,0,0,0-4.908,4.468,7.74,7.74,0,0,0-.061,8.744M57.837,68.246l-10.644-.228a2.571,2.571,0,0,1,.006-5.141l11.019.189a9.321,9.321,0,0,0,8.611-4.946L70.684,50.6a2.553,2.553,0,0,0-1.232-3.43,2.584,2.584,0,0,0-3.393,1.182l-3.685,7.18a4.265,4.265,0,0,1-3.9,2.367L49.7,57.725a4.884,4.884,0,0,1-4.387-2.977,4.811,4.811,0,0,1,1.107-5.37L49.1,46.87a2.653,2.653,0,0,0,.767-2.183,47.5,47.5,0,0,1-.112-7.047,9.314,9.314,0,0,0-4.019-8.288,14.206,14.206,0,0,0-14.8-.953,13.229,13.229,0,0,0-3.183,20.779,10.947,10.947,0,0,1,2.95,7.849,29.02,29.02,0,0,0,14.721,26.3,29.582,29.582,0,0,0,25.906,1.942c7.911-3.145,12.338-11.334,9.845-19.621L79.628,60.5A2.56,2.56,0,0,1,84.5,58.914L86,63.581a2.546,2.546,0,0,0,4.893-1.4l-2-6.544A7.752,7.752,0,1,0,74.09,60.231l2.219,7.159a2.581,2.581,0,1,1-4.91,1.581l-1.816-5.677a15.064,15.064,0,0,1-11.746,4.952m.192-15.518,1-2.156c-.68-1.542-2.673-2.993-4.3-2.462a47.013,47.013,0,0,1-4.05,4.45Z" fill="#1a1818"/>
+																<path id="Path_86" data-name="Path 86" d="M120.451,40.28a2.547,2.547,0,0,1-2.609,2.637,2.579,2.579,0,0,1-2.531-2.593,23.406,23.406,0,0,0-14.69-21.56,2.524,2.524,0,0,1-1.174-3.386,2.6,2.6,0,0,1,3.5-1.2,28.062,28.062,0,0,1,17.5,26.1" fill="#1a1818"/>
+																<path id="Path_87" data-name="Path 87" d="M28.175,85.4a2.606,2.606,0,0,1,2.9,2.281A2.54,2.54,0,0,1,28.8,90.519a2.645,2.645,0,0,1-2.828-2.128A2.526,2.526,0,0,1,28.175,85.4" fill="#1a1818"/>
+																<path id="Path_88" data-name="Path 88" d="M92.112,12.485a2.517,2.517,0,0,1,3.352,1.678,2.548,2.548,0,1,1-3.352-1.678" fill="#1a1818"/>
+																</g>
+															</g>
+														</svg>
+													</div>
+													<div class="item-title">Tüp Bebek</div>
+												</a>
+											</div>
+											<div class="swiper-slide">
+												<a href="https://ftip.com.tr" target="_blank" class="item">
+													<div class="item-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="80.523" height="80.521" viewBox="0 0 80.523 80.521">
+															<g id="Group_10" data-name="Group 10" transform="translate(0)">
+																<g id="Group_11" data-name="Group 11">
+																<path id="Path_89" data-name="Path 89" d="M57.092,0a3.731,3.731,0,0,1,2.517,4.622l16.215,16.3a3.73,3.73,0,0,1,4.7,2.538v1.663l-.66,1.256A13.734,13.734,0,0,1,75.02,29.86c-5.074,2.135-10.6,1.973-16.037,1.234a27.871,27.871,0,0,1-.571,13.02A21.254,21.254,0,0,1,43.567,58.642a1.193,1.193,0,1,1-.729-2.255,18.874,18.874,0,0,0,13.4-13.262,25.669,25.669,0,0,0,.239-12.461l-2.674-.576a24.464,24.464,0,0,1,.264,11.691A16.37,16.37,0,0,1,42.23,54.024a22.12,22.12,0,0,1-11.27.084l-3.662-.94c-5.882-1.51-12.615-2.671-18.607-1.107a12.964,12.964,0,0,0-5.91,3.224,1.242,1.242,0,0,0-.1,1.728,1.21,1.21,0,0,0,1.718.064A10.806,10.806,0,0,1,9.417,54.4c5.658-1.379,13.071-.066,18.643,1.546A29.908,29.908,0,0,0,37.6,57.221a1.175,1.175,0,0,1,1.179,1.194A1.2,1.2,0,0,1,37.6,59.578a35.182,35.182,0,0,1-6.564-.463c1,6.793.965,15.285-4.213,20.366a3.556,3.556,0,0,1-5.987-3.265l-3.523-3.55a1.18,1.18,0,0,1,.131-1.683,1.224,1.224,0,0,1,1.684.177l2.97,2.942a10.169,10.169,0,0,0,2.1-5.686L12.077,56.352A10.258,10.258,0,0,0,6.408,58.43l8.685,8.7a1.184,1.184,0,0,1-.042,1.758,1.2,1.2,0,0,1-1.619-.088L4.318,59.692A3.561,3.561,0,0,1,1.039,53.7a14.776,14.776,0,0,1,6.215-3.67c4.746-1.42,9.342-1.167,14.169-.553A28.112,28.112,0,0,1,21.836,37.1,21.283,21.283,0,0,1,36.664,22.032a27.931,27.931,0,0,1,12.765-.493,40.842,40.842,0,0,1-.388-9.124,1.169,1.169,0,0,1,2.331.179,39.939,39.939,0,0,0,.554,9.513l2.636.706c-.771-4.645-1.312-9.415-.039-13.9A10.894,10.894,0,0,1,57.158,4.3a1.164,1.164,0,0,0-.226-1.671,1.223,1.223,0,0,0-1.721.221c-3.135,3.29-2.358,6.093-4.36,5.346-.355-.132-.881-.683-.725-1.184A14.038,14.038,0,0,1,54.043.724L55.362,0ZM68.12,24.3c2.209-.308,4.166-.734,5.706-2.034L58.263,6.617a10.847,10.847,0,0,0-2,5.823Zm-3.3.045-8.657-8.664a42.317,42.317,0,0,0,.946,7.733,41.3,41.3,0,0,0,7.711.931M26.384,38.717a16.329,16.329,0,0,1,11.6-12.06c5.416-1.525,9.642-.7,14.9.721,7.326,1.979,18.9,3.677,24.871-2.15a1.247,1.247,0,0,0,.1-1.734,1.2,1.2,0,0,0-1.626-.126,11.47,11.47,0,0,1-5.737,2.92c-5.973,1.238-13.022-.195-18.868-1.808a26.539,26.539,0,0,0-13.465-.406,18.981,18.981,0,0,0-14.1,13.874,25.858,25.858,0,0,0-.121,11.989l2.679.577a24.14,24.14,0,0,1-.227-11.8m24.75-9.353a23.357,23.357,0,0,0-9.822-.969L52.131,39.214a23.155,23.155,0,0,0-1-9.85m-8.891,22.21a14.651,14.651,0,0,0,5-2.775L37.61,39.161a1.183,1.183,0,1,1,1.743-1.59L48.9,47.1a14.3,14.3,0,0,0,2.664-5.113L38.531,28.96a14.34,14.34,0,0,0-5.1,2.649l1.97,2.03a1.171,1.171,0,0,1-.075,1.617,1.2,1.2,0,0,1-1.568.03l-2.062-2A14.5,14.5,0,0,0,28.964,38.3Zm-2.771.566L28.353,41.021a22.452,22.452,0,0,0,.934,10.211,21.594,21.594,0,0,0,10.185.908M23.319,57.174a42.062,42.062,0,0,0-8.018-.955l9.018,8.966a41.789,41.789,0,0,0-1-8.011m4.76,15.849c1.547-4.562,1.236-9.82.452-14.505l-2.63-.706c.966,5.9,1.906,13.706-2.455,18.319a1.2,1.2,0,0,0,.068,1.72c1.765,1.566,4.1-3.454,4.565-4.828" fill="#1a1818"/>
+																</g>
+															</g>
+														</svg>
+													</div>
+													<div class="item-title">Fonksiyonel Tıp</div>
+												</a>
+											</div>
+											<div class="swiper-slide">
+												<a href="/gebelik-usg-ultrasonla-muayene-usg-neyi-gosterir.html" class="item">
+													<div class="item-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="69.291" height="57.936" viewBox="0 0 69.291 57.936">
+															<g id="Group_13" data-name="Group 13" transform="translate(0 -0.001)">
+																<g id="Group_14" data-name="Group 14">
+																<path id="Path_90" data-name="Path 90" d="M57.223,10.241l9.177-.015a2.83,2.83,0,0,1,2.886,2.857l0,4.2-3.672,7.666L65.6,32.719a3.213,3.213,0,0,1-2.556,3.2L63.043,48.45a9.454,9.454,0,0,1-9.5,9.487L33.349,57.92a9.427,9.427,0,0,1-9.32-9.444l-.018-3.547L5.494,44.924A5.412,5.412,0,0,1,0,39.487V5.46A5.406,5.406,0,0,1,5.5,0H44.876a5.394,5.394,0,0,1,5.5,5.46l.008,33.879a5.431,5.431,0,0,1-5.51,5.584l-18.51,0-.02,3.531a7.128,7.128,0,0,0,7.187,7.169l20.095-.009a7.125,7.125,0,0,0,7.1-7.177l.006-12.51a3.238,3.238,0,0,1-2.582-3.209l-.007-7.745L54.5,17.315l-.016-4.233a2.785,2.785,0,0,1,2.738-2.841M48.066,34.036l-.005-28.72a3.059,3.059,0,0,0-3.075-3.007H5.393A3.09,3.09,0,0,0,2.309,5.455l0,28.583Zm18.909-18.16.011-2.827a.691.691,0,0,0-.6-.512H57.309a.717.717,0,0,0-.519.511l.034,2.831ZM62.662,33.642c.254,0,.586-.5.627-.767l.014-8.431L66.289,18.2h-8.8l2.976,6.291,0,8.242c0,.383.319.9.714.9ZM44.947,42.608a3.014,3.014,0,0,0,3.1-2.949l-.008-3.312H2.334l-.023,3.146a3.088,3.088,0,0,0,3.348,3.123Z" fill="#1a1818"/>
+																<path id="Path_91" data-name="Path 91" d="M43.438,21.793a1.171,1.171,0,0,1-.168,1.734,29.106,29.106,0,0,1-36.164,0,1.164,1.164,0,0,1-.2-1.693L17.541,8.425a1.161,1.161,0,0,1,1.652-.22,9.679,9.679,0,0,0,11.99,0,1.161,1.161,0,0,1,1.653.229Zm-2.484.59-9.277-11.7a11.982,11.982,0,0,1-12.98,0l-9.28,11.7a26.792,26.792,0,0,0,31.537,0" fill="#1a1818"/>
+																<path id="Path_92" data-name="Path 92" d="M32.523,40.569c-1.063.146-2.52.227-2.587-1a1.113,1.113,0,0,1,.961-1.213,7.891,7.891,0,0,1,1.588.017,1.129,1.129,0,0,1,.87,1.059,1.113,1.113,0,0,1-.832,1.136" fill="#1a1818"/>
+																<path id="Path_93" data-name="Path 93" d="M19.531,40.588c-1.022.106-2.446.2-2.512-1.013a1.111,1.111,0,0,1,.883-1.2,7.946,7.946,0,0,1,1.589-.019,1.131,1.131,0,0,1,.947,1.087,1.115,1.115,0,0,1-.907,1.145" fill="#1a1818"/>
+																<path id="Path_94" data-name="Path 94" d="M26.03,40.576a9.793,9.793,0,0,1-1.5.048,1.155,1.155,0,0,1-1.058-1.068,1.12,1.12,0,0,1,.917-1.191,8.2,8.2,0,0,1,1.6,0,1.12,1.12,0,0,1,.9,1.066,1.1,1.1,0,0,1-.863,1.145" fill="#1a1818"/>
+																</g>
+															</g>
+														</svg>
+													</div>
+													<div class="item-title">Gebelik USG</div>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="ta-ftip">
+			<div class="custom-container">
+				<div class="row justify-content-center">
+					<div class="col-xxl-6 col-xl-8">
+						<div class="head">
+							<div class="title">Ücretsiz Kitap</div>
+							<div class="text">Temel bilgileri koruyan, 20 yıldan fazla bir süredir geçerliliğini sürdüren bu kılavuzun PDF’si artık ücretsiz.</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="content">
+							<div class="row g-xl-5 align-items-center">
+								<div class="col-xl-5 col-xxl-4">
+									<div class="image">
+										<img src="/img/others/ftip-tree.png" alt="img" class="img-fluid">
+									</div>
+								</div>
+								<div class="col-xl-7 col-xxl-8">
+									<div class="box">
+										<div class="title">Kısırlık Tüp Bebek Hasta Kılavuzu</div>
+										<div class="text">
+											1999 yılında yazıp yayınladığım ve artık piyasada bulunmayan "Kısırlık Tüp Bebek Hasta Kılavuzu" isimli kitabımın .pdf formatını arzu eden herkes okuyabilsin diye buradan paylaşıyorum. Her ne kadar üzerinden 20 yıldan fazla zaman geçtiyse de temel kavramlar değişmedi. 
+											<br><br>
+											İnceleyin, değerlendirin... Bana göre çok güzel, kolay anlaşılır, sade bilgilerden oluşan bir başvuru temel kitabı... <em class="text-muted">Kargaya yavrusu kuzgun görünürmüş :-)</em>
+										</div>
+										<div class="more">
+											<a href="/img/tup-bebek.pdf" target="_blank" class="btn-blue rounded">PDF İndir</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="ta-youtube">
+			<div class="custom-container">
+				<div class="row">
+					<div class="col-12">
+						<div class="content">
+							<div class="start">
+								<div class="title">YouTube Kanalımıza&nbsp;<br>Abone Olun</div>
+								<div class="text">
+									Yeni videolar, fonksiyonel tıp, tüp bebek ve daha fazla içerik için kanalımıza abone olun ve topluluğumuza katılın.
+									<br><br>
+									Bu videoyu muayenehanemde hastalarımı bilgilendirmek amacıyla 2008 yılında hazırlatmıştım. Youtube günlük yaşamımızda iyice yaygınlaştığında da 2013'de orada yayınlamışım. 2021 Temmuz itibariyle 352.000'den fazla izlenmiş. Görüntü kalitesi o günün koşullarına göre iyi idi, ama bugün gözümüz çok daha net videolara alışkın. Dolayısıyla beğenmeyenler de olur elbette. Yine de "zarfa değil mazrufa bakılmalı" derdi eskiler. Yani ambalaja değil içeriğe göre değerlendirilmeli anlamına... Kendiniz değerlendirin.
+								</div>
+								<div class="more">
+									<a href="https://www.youtube.com/@Prof.Dr.Ya%C5%9FarTayfunAlper" target="_blank" class="btn-blue rounded"><i class="fa-brands fa-youtube fs-16 me-2"></i> Youtube Abone Ol</a>
+								</div>
+							</div>
+							<div class="end">
+								<div class="image">
+									<a href="https://www.youtube.com/@Prof.Dr.Ya%C5%9FarTayfunAlper" class="play" target="_blank"><i class="fa-solid fa-play"></i></a>
+									<img src="/img/others/youtube-cover.png" alt="img" class="img-fluid">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section -->
+		<section class="ta-testimonials">
+    <div class="custom-container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-6 col-xl-8">
+                <div class="head">
+                    <div class="title">Hasta Yorumları</div>
+                    <div class="text">Hastalarımızın deneyimleri ve geri bildirimleri, sunduğumuz sağlık hizmetinin en değerli göstergelerinden biridir. Tedavi süreçlerini bizimle yaşayan hastalarımızın paylaştığı yorumları burada inceleyebilirsiniz.</div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="content">
+                    <div class="testimonial-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            S*** Ç***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Tavsiye Ederim. İlk Denememiz Başarılı Oldu..</div>
+                                    <div class="item-comment">
+                                        Kendisinde tüp bebek tedavisi yaptırdık doktorumuz ve sekreteri firdevs hanım çok iyiler ve ilgilendiler. Tavsiye ederim ilk denememiz başarılı oldu...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            G*** Ö***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Tayfun Hocamızdan Çok Memnun Kaldık..</div>
+                                    <div class="item-comment">
+                                        Tayfun hocamızdan çok memnun kaldık. Çok ilgili bir doktor. Bize yeterince zaman ayırdı ve bebeğimizin sağlığı ile ilgili detaylı şekilde bilgi alabildik. Çok teşekkür ederiz.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            N*** Ö***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">İyi ki Tanıdım Kendisini..</div>
+                                    <div class="item-comment">
+                                        Bu perşembe ilk kez gittim ben hocama hatta hocamın kendisinden randevu talep edip te vazgeçip ertesi gün beni kırmadan nezaketle kabul eden bir hoca (etmeyebilirdi de egosu tavan yapan nice insanlar var) ...Bir tane çocuğum var ikincisi de hayırlısıyla olur mu olmaz mi Allahın bileceği bir şey ....Ama hayatımda gördüğüm en ilgili merhametli güler yüzlü sizi sonuna kadar sabırla dinleyen ve sizi istediğiniz aklınıza takılan her konuda bilgilendiren bir dr Tayfun Alper hocam ....psikiyatri dru gibi de valla öyle moral oldu ki bana sağolsun.....iyi ki tanıdım kendisini ...Allah uzun bir ömür versin hocama böyle değerli insanlar az bulunuyor.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            E*** D***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Harika Bir İnsan. Harika Bir Doktor..</div>
+                                    <div class="item-comment">
+                                        Harika bir insan...Harika bir doktor. Samsun da Tayfun hocam gibi bir doktorun bulunması, bizler için çok büyük bir şans...
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            E*** K***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Görüşmediğim Hekim Kalmamıştı..</div>
+                                    <div class="item-comment">
+                                        Herkese merhaba ben tayfun hocam dan nasıl memnun kaldığımi burada yazsam çok uzun olur kızım 45 milyon da görünen vajinal yokluğu tanısı ile 3 ay bir süre içinde turkiyede neredeyse görüşmedigim hekim kalmamıştı 2 kere üniversite hastanesinde başarırız olunmuştu son tanı kızınız kiritik vaka idi başka bir hekimin epikiriz lerini inceleyip bizi bunu en iyi tayfun bey değerlendirir demesi ile çok şükür tayfun hocamız ile tanıştık ilk anda ki yaklaşımı size en iyi güveni veriyor ve mesleğine saygı duyan bir hekim en iyi şekilde yapan kızım şimdi çok sağlık li ve kiritik denileni yaptı hocam her duam da siniz allah'ım sizden binkere razı olsun iyiki varsınız çalışma arkadaşları ve firdevs hanım kızıma abla gibi yaklaşımı sizin gibi iyi yürekli mesleğini severek yapan sadece sağlık diyen hekimlerimizi rabbim başımızdan eksik etmesin hepinize çok teşekkür ediyorum
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            H*** Y***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Engin Deneyim ve Tecrübesiyle Kız Bebeğimizi Kucağımıza Aldık..</div>
+                                    <div class="item-comment">
+                                        Yaşar Tayfun hocam çok iyi bir insan ben Tokattan geldim 05.03..2018 de transfer yapıldı çok şükür elhamdülillah Allahın izni ve hocamızın engin deneyim ve tecrübesiyle kız bebeğimizi kucağımıza aldık çok mutluyuz Allah hocamızdan ve emeği geçen tüm personelden Allah razı olsun hocamıza sevgi ve saygılar sunarım.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            Ş*** A***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Uzmanlık Alanında En İyi Doktorlardan..</div>
+                                    <div class="item-comment">
+                                        Yaşar tayfun alper gidebileceğiniz ender kadın doğum doktorlarından birisidir. Alanında en iyi doktorlardan. Hamile olduğum dönem doktor arayışımız sürerken tavsiye üzerine kendisine gitmiş ve çok memnun kalmıştım. Tüm yardımları ve desteği için kendisine minnettarım. Allah razı olsun
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <div class="item-image-with-symbol">
+                                        <div class="item-image">
+                                            <img src="/img/others/comment.svg" alt="img" class="img-fluid">
+                                        </div>
+                                        <div class="item-symbol">
+                                            <i class="fa-solid fa-question"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-fullname-with-voted">
+                                        <div class="item-fullname">
+                                            L*** Ö***
+                                        </div>
+                                        <div class="item-voted">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item-subject">Gerçekten Çok İyi Bir Kadın Doğum Doktoru..</div>
+                                    <div class="item-comment">
+                                        Merhabalar. Yaşar beye kontrollerim için gittim zamanında. Gerçekten çok iyi bir kadın doğum doktoru. Çok ilgili ve yardımsever. Aklınıza takılan tüm soruları yanıtlayan ve hiç soru işareti bırakmayan bir hekim. Samsun'da kadın doğum doktoru arayan herkese öneriyorum prof. dr. yaşar tayfun alper'i. Teşekkürler.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev"><i class="fa-solid fa-long-arrow-left"></i></div>
+                        <div class="swiper-button-next"><i class="fa-solid fa-long-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+		<!-- Section -->
+		<footer class="ta-footer">
+    <div class="top">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-xl-4 col-xxl-3 col-lg-4 col-sm-6">
+                    <a href="#" class="logo-area">
+                        <img src="/img/logo-light.svg" alt="img" class="img-fluid">
+                    </a>
+                    <div class="information-area">
+                        Mutluluk, insanın sevdiği işi yapması değil,&nbsp;<br>yaptığı işi sevmesidir.
+                    </div>
+                    <ul class="social-area">
+                        <li><a href="https://www.facebook.com/tayfun.alper.9" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="https://tr.linkedin.com/in/profdrtayfunalper" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="https://www.instagram.com/prof.dr.tayfunalper" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/@Prof.Dr.Ya%C5%9FarTayfunAlper" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-8 col-xxl-9 col-lg-8 col-sm-6">
+                    <div class="menu-area">
+                        <ul class="menu">
+                            <li class="title">Hakkımda</li>
+                            <li><a href="/biyografi.html">Biyografi</a></li>
+                            <li><a href="/randevu.html">Randevu Al</a></li>
+                        </ul>
+                        <ul class="menu">
+                            <li class="title">İlgi Alanları</li>
+                            <li><a href="/infertilite.html">Infertilite</a></li>
+                            <li><a href="/tup-bebek.html">Tüp Bebek</a></li>
+                            <li><a href="https://ftip.com.tr" target="_blank">Fonksiyonel Tıp</a></li>
+                            <li><a href="/gebelik-usg-ultrasonla-muayene-usg-neyi-gosterir.html">Gebelik USG</a></li>
+                        </ul>
+                        <ul class="menu">
+                            <li class="title">İletişim</li>
+                            <li><a href="mailto:bilgi@tayfunalper.com"><i class="fa-solid fa-envelope me-2"></i> bilgi@tayfunalper.com</a></li>
+                            <li><a href="https://wa.me/905396620036"><i class="fa-brands fa-whatsapp me-2"></i> WhatsApp</a></li>
+                            <li><a href="https://maps.app.goo.gl/BVki2E7qmePjLFWx9"><i class="fa-solid fa-map-marker-alt me-2"></i> Mimarsinan, Alparslan Blv. No:17, 55200 Atakum/Samsun</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright-area">
+                        © 2026 Prof. Dr. Tayfun Alper. Tüm hakları saklıdır.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+	</main>
+
+	<!-- Vendor Bundle (Webpack - includes jQuery, Bootstrap, FontAwesome, Select2, Flatpickr) -->
+	<script src="/js/bundle.js"></script>
+	<!-- Current Page -->
+	<script type="text/javascript">
+		$(function(){
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		
+		// Veri data.json'dan yüklenecek
+		let LIB = [];
+		let CATEGORIES = [];
+		let currentVideoUrl = ""; // Kopyalama butonu için
+		function renderTop13(list) {
+		const container = document.getElementById("top13-container");
+		if (!container || list.length === 0) return;
+
+		container.innerHTML = "";
+
+		// Listede kaç eleman varsa (veya max 13)
+		const maxCards = Math.min(13, list.length);
+		for (let i = 1; i <= maxCards; i++) {
+			const item = list[i - 1];
+			if (!item) continue;
+
+			// 1. Ana Kapsayıcı
+			const wrapperNode = el("div", { class: "top-card-wrapper", tabindex: "0", "data-id": item.id, role: "button", "aria-label": "Top " + i + ": " + item.title });
+
+			// 2. Transparan, Çizgili Rakam
+			const numberNode = el("div", { class: "top-number", html: i });
+
+			// 3. Kart Kutusu
+			const boxNode = el("div", { class: "top-card-box" });
+
+			// Görseli ayarla (Yoksa placeholder kullanır)
+			const imageSrc = item.image ? 'img/top/main-' + item.image : `img/top/default.jpg`;
+			const bgImgNode = el("img", { class: "top-card-bg", src: imageSrc, alt: item.title, loading: "lazy" });
+
+			// Siyah karartma katmanı
+			const overlayNode = el("div", { class: "top-card-overlay" });
+
+			// 4. Metin ve Süre İçeriği
+			const contentNode = el("div", { class: "top-card-content" });
+			const titleNode = el("div", { class: "top-card-title", html: escapeHtml(item.title) });
+
+			// Tasarımdaki örnek yazıyı sabitliyoruz, istersen item.desc yapabilirsin
+			const descText = "Anne baba olma hayalinize giden bu özel yolculukta; süreçten başarı oranlarına kadar aklınızdaki tüm soruları...";
+			const descNode = el("div", { class: "top-card-desc", html: descText });
+
+			const bottomNode = el("div", { class: "top-card-bottom" });
+			// Virgüllü süreler için formatlama (örn: 1:45 yerine 1.45 dk)
+			let formattedDur = escapeHtml(item.duration).replace(":", ".");
+			const durationNode = el("div", { class: "top-card-duration", html: formattedDur });
+			const progressNode = el("div", { class: "top-card-progress" });
+
+			// Elemanları birbirine bağlama
+			bottomNode.appendChild(durationNode);
+			bottomNode.appendChild(progressNode);
+
+			contentNode.appendChild(titleNode);
+			contentNode.appendChild(descNode);
+			contentNode.appendChild(bottomNode);
+
+			boxNode.appendChild(bgImgNode);
+			boxNode.appendChild(overlayNode);
+			boxNode.appendChild(contentNode);
+
+			wrapperNode.appendChild(numberNode);
+			wrapperNode.appendChild(boxNode);
+
+			// Tıklama Olayları
+			wrapperNode.addEventListener("click", () => window.open("https://www.tupbebekcevaplari.com/", "_blank", "noopener,noreferrer"));
+			wrapperNode.addEventListener("keydown", (e) => {
+			if (e.key === "Enter" || e.key === " ") window.open("https://www.tupbebekcevaplari.com/", "_blank", "noopener,noreferrer");
+			});
+
+			container.appendChild(wrapperNode);
+		}
+		}
+		// Kategorileri URL-dostu id'ye çevir
+		function categoryToId(category) {
+		return category
+			.toLowerCase()
+			.replace(/ı/g, 'i')
+			.replace(/ğ/g, 'g')
+			.replace(/ü/g, 'u')
+			.replace(/ş/g, 's')
+			.replace(/ö/g, 'o')
+			.replace(/ç/g, 'c')
+			.replace(/[^a-z0-9]+/g, '-')
+			.replace(/^-+|-+$/g, '');
+		}
+
+		// Kategorilere göre section'ları oluştur
+		function createCategorySections(categories) {
+		const container = document.getElementById('categories-container');
+		container.innerHTML = '';
+
+		categories.forEach(category => {
+			const categoryId = categoryToId(category);
+			const section = el('section', { id: categoryId });
+
+			const rowHead = el('div', { class: 'row-head' });
+			rowHead.appendChild(el('h2', { html: escapeHtml(category) }));
+			const categoryCount = LIB.filter(x => x.category === category).length;
+			rowHead.appendChild(el('span', { html: `${categoryCount} video` }));
+
+			const rail = el('div', { class: 'rail' });
+			const railInner = el('div', { class: 'rail-inner', id: `row-${categoryId}` });
+			rail.appendChild(railInner);
+
+			section.appendChild(rowHead);
+			section.appendChild(rail);
+			container.appendChild(section);
+		});
+		}
+
+		// data.json'dan veriyi yükle
+		// data.json ve category.json'dan veriyi yükle
+		async function loadData() {
+		try {
+			// 1. Ana kategoriler ve videolar (data.json)
+			const response = await fetch('data.json');
+			const data = await response.json();
+
+			// Normal veriyi dönüştür
+			LIB = data.flatMap((cat, catIndex) => {
+			return cat.details.map((detail, detailIndex) => ({
+				id: `c${catIndex}-d${detailIndex}`,
+				category: cat.category,
+				image: detail.image || "",
+				title: detail.title,
+				desc: detail.title,
+				duration: detail.time,
+				tags: [cat.category],
+				url: detail.link || "#"
+			}));
+			});
+
+			// Top listesi için ilk 8 videoyu kaynak olarak kullan
+			const topData = data.flatMap(cat => cat.details).slice(0, 8);
+
+			// Top listesi verilerini formatla
+			const TOP_LIB = topData.map((item, index) => ({
+			id: `top-${index}`,
+			category: "Top 8",
+			image: item.image,
+			title: item.title || "Yeni Bölüm Yakında...", // Başlık boşsa geçici metin göster
+			desc: "Anne baba olma hayalinize giden bu özel yolculukta; süreçten başarı oranlarına kadar aklınızdaki tüm soruları...",
+			duration: item.time,
+			url: item.link
+			}));
+
+			// Modalların (Video Pop-up) düzgün çalışabilmesi için Top listesini de ana kütüphaneye ekliyoruz
+			LIB = [...LIB, ...TOP_LIB];
+
+			// Top listesini bas
+			renderTop13(TOP_LIB);
+
+		} catch (error) {
+			console.error('Veri yüklenirken hata oluştu:', error);
+		}
+		}
+
+		function el(tag, attrs = {}, children = []) {
+		const node = document.createElement(tag);
+		Object.entries(attrs).forEach(([k, v]) => {
+			if (k === "class") node.className = v;
+			else if (k === "html") node.innerHTML = v;
+			else node.setAttribute(k, v);
+		});
+		children.forEach(c => node.appendChild(c));
+		return node;
+		}
+
+		function escapeHtml(s) {
+		return String(s)
+			.replaceAll("&", "&amp;")
+			.replaceAll("<", "&lt;")
+			.replaceAll(">", "&gt;")
+			.replaceAll('"', "&quot;")
+			.replaceAll("'", "&#039;");
+		}
+
+		function card(item) {
+		const playIcon = `
+		<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M9 7l10 5-10 5V7z" fill="rgba(244,244,246,.95)"></path>
+		</svg>
+		`;
+		const node = el("div", { class: "card", tabindex: "0", "data-id": item.id, role: "button", "aria-label": item.title });
+		const thumb = el("div", { class: "thumb" });
+
+		const imageSrc = item.image ? 'img/top/' + item.image : 'img/top/default.jpg';
+
+		const img = el("img", {
+			src: imageSrc,
+			alt: item.title,
+			loading: "lazy",
+			decoding: "async"
+		});
+
+		img.onerror = function () {
+			this.onerror = null;
+			this.src = 'img/top/default.jpg';
+		};
+
+		thumb.appendChild(img);
+		const play = el("div", { class: "play", html: playIcon });
+		thumb.appendChild(play);
+
+		const body = el("div", { class: "card-body" });
+		body.appendChild(el("div", { class: "title", html: escapeHtml(item.title) }));
+		const meta = el("div", { class: "meta" });
+
+		meta.appendChild(el("span", { class: "badge", html: escapeHtml(item.duration) }));
+		body.appendChild(meta);
+
+		node.appendChild(thumb);
+		node.appendChild(body);
+
+		node.addEventListener("click", () => openModal(item.id));
+		node.addEventListener("keydown", (e) => {
+			if (e.key === "Enter" || e.key === " ") openModal(item.id);
+		});
+
+		return node;
+		}
+
+		function render(list) {
+		CATEGORIES.forEach(category => {
+			const categoryId = categoryToId(category);
+			const section = document.getElementById(categoryId);
+			const host = document.getElementById("row-" + categoryId);
+			if (!host || !section) return;
+			
+			// Bu kategoriye ait sonuçları filtrele
+			const categoryItems = list.filter(x => x.category === category);
+			
+			// Eğer sonuç varsa göster, yoksa gizle
+			if (categoryItems.length > 0) {
+			section.style.display = '';
+			host.innerHTML = "";
+			categoryItems.forEach(item => host.appendChild(card(item)));
+			} else {
+			section.style.display = 'none';
+			}
+		});
+		}
+
+		// Modal İşlemleri
+		const modal = document.getElementById("modal");
+		const mTitle = document.getElementById("mTitle");
+		const mDesc = document.getElementById("mDesc");
+		const mCat = document.getElementById("mCat");
+		const mDur = document.getElementById("mDur");
+		const mCopy = document.getElementById("mCopy");
+		const mVideoContainer = document.getElementById("mVideoContainer");
+
+		function openModal(id) {
+		const item = LIB.find(x => x.id === id);
+		if (!item) return;
+
+		mTitle.textContent = item.title;
+		mDesc.textContent = item.desc;
+		mCat.textContent = item.category;
+		mDur.textContent = item.duration;
+		currentVideoUrl = item.url || "#";
+
+		// Video URL Dönüştürme (YouTube için)
+		let embedUrl = currentVideoUrl;
+		if (embedUrl.includes("youtube.com/watch?v=")) {
+			embedUrl = embedUrl.replace("watch?v=", "embed/");
+			embedUrl = embedUrl.split("&")[0]; // Gereksiz parametreleri temizle
+		} else if (embedUrl.includes("youtu.be/")) {
+			embedUrl = embedUrl.replace("youtu.be/", "www.youtube.com/embed/");
+			embedUrl = embedUrl.split("?")[0];
+		}
+
+		// Iframe ve kapatma butonunu ekle (autoplay=1 ile otomatik oynatma)
+		mVideoContainer.innerHTML = `
+		<button class="close" id="closeBtn" aria-label="Kapat" onclick="closeModal()">✕</button>
+		<iframe src="${embedUrl}?autoplay=1" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>
+		`;
+
+		modal.classList.add("open");
+		document.body.style.overflow = "hidden";
+		}
+
+		// İlk veri yükleme
+		loadData();
+
+  	</script>
+
+
+</body>
+</html>

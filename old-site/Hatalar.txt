@@ -1,0 +1,6 @@
+8.07.2019 12:58:31
+Page'in Title özelliğinin kullanımı sayfada üstbilgi denetiminin olmasını gerektirir. (örneğin, <head runat="server" />).
+/tayfunalper.com/makale-Cocuklugum.aspx
+8.07.2019 13:35:38
+t:\projeler\web\tayfunalper.com\tupBebekCevaplari.aspx.cs(141): error CS0136: 'baslik' adındaki yerel değişken, 'üst veya geçerli' kapsamında zaten başka bir şeyi göstermek üzere kullanılmış olan 'baslik' öğesine başka bir anlam vereceğinden bu kapsamda bildirilemez
+/tayfunalper.com/tup-bebek-cevaplari-146.aspx

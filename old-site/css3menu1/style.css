@@ -1,0 +1,495 @@
+body
+{
+    margin:0 0 0 0;
+    background-color:#f8f8f8;
+    
+    }
+    
+  
+    .ana1
+    {
+       
+      
+     position:absolute;
+        }
+   
+    
+.header{
+width:100%;padding:8px 0 0 0;background-color:#333;font:13px Tahoma;color:#cccccc;text-decoration:none; height:110px; 
+    text-align: left;
+}
+.tuncay{width:100%;text-align:center;padding:0 0 0 0; background-image:url("../images/menuBg.png"); background-repeat:repeat-x; font:0px Tahoma;color:#cccccc;text-decoration:none;
+}
+.baslik
+{
+    top:25px;
+    left:220px;
+    text-transform:capitalize;
+   padding:15px 0px 0px 5px;
+    color:#ffffff;
+    font-weight:700;
+    font-size:18px;
+    padding-left:8px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+}
+
+.baslik10
+{
+    top:25px;
+    left:200px;
+    text-transform:capitalize;
+   padding:15px 0px 0px 5px;
+    color:#79c4f1;
+    font-weight:700;
+    font-size:18px;
+    padding-left:8px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+}
+.baslik10 a:link { color:#79c4f1;text-decoration:none}
+.baslik10 a:visited {color:#79c4f1;text-decoration:none}
+.baslik10 a:hover {color:#79c4f1;text-decoration:none}
+
+
+
+.baslik20
+{
+    
+    top:55px;
+    left:200px;
+  
+    color:#79c4f1;
+
+    font-weight:150;
+    font-size:12px;
+    padding-left:8px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+    
+   
+   
+}
+.baslik20 a:link { color:#79c4f1;text-decoration:none}
+.baslik20 a:visited {color:#79c4f1;text-decoration:none}
+.baslik20 a:hover {color:#79c4f1;text-decoration:none}
+
+
+.footer {
+ width: 100%;
+ clear: both;
+
+ background-color:#333;
+ color:  #0092be;
+ text-align:left;
+ margin: 0 auto 0 auto;
+ position: relative;
+    top: 0px;
+    left: -1px;
+        background-image:url('../images/altbg.png');
+    background-repeat: repeat-x;
+}
+ 
+ 
+.uyelik
+{
+    top:25px;
+   padding:20px 10px 0px 0px;
+    color:#cccccc;
+    font-weight:900;
+    font-size:12px;
+    padding-left:8px;
+    font-family: "Tahoma";
+    text-decoration:none;
+    
+
+  
+}
+.uyelik a
+{
+    top:25px;
+   padding:20px 10px 0px 0px;
+    color:#cccccc;
+    font-weight:900;
+    font-size:12px;
+    padding-left:8px;
+    font-family: "Tahoma";
+    text-decoration:none;
+
+  
+}
+
+.uyelik hover
+{
+    top:25px;
+   padding:20px 10px 0px 0px;
+    color:#ffffff;
+    font-weight:900;
+    font-size:12px;
+    padding-left:8px;
+    font-family: "Tahoma";
+    text-decoration:none;
+
+  
+}
+
+.uyeMenu
+{
+     
+  margin : 0 auto;
+    color:#000;
+    font-weight:600;
+    font-size:12px; 
+    
+    font-family: "Tahoma";
+ 
+  background-image:url('../images/loginBg.png');
+  background-repeat:no-repeat;
+   height:74px;
+position:relative; 
+}
+
+.oturumAc  
+{
+
+
+}
+
+.yaziBaslik
+{
+    
+
+
+    color:#008fba;
+    font-size:17px;
+    padding:15px 10px 10px 0;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    font-weight:700;
+}
+.anaYazi
+{
+    color:#008fba;
+    font-size:14px;
+    padding:5px 5px 5px 0;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    font-weight:600;
+}
+
+.anaYaziResim
+{
+  background-color: #ffffff; padding-top:2px;
+ padding-right:10px;
+ padding-bottom:2px;
+}
+
+.icerik12
+{
+
+  background-color:White;
+  
+ 
+    text-align:left;
+    
+  padding-top:0px;
+  padding-bottom :15px;
+   width:100%;
+   padding-right :3px;
+  padding-left: 10px;
+
+}
+
+
+
+.yaziBaslik10
+{
+    
+
+
+    color:#008fba;
+    font-size:17px;
+    padding:0px 10px 10px 0;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    font-weight:500;
+}
+
+
+
+.baslikAlt
+{
+   margin : 10px 0 0 0;
+    background-image:url(../images/altbg.png);
+    background-repeat: repeat-x;
+    
+    
+    
+    
+    
+    }
+    
+    .baslikAlt2
+{
+    top:80px;
+    margin : 0 0 0 0;
+    background-image:url(../images/altbg.png);
+    background-repeat: repeat-x;
+    
+    
+    
+    
+    
+    }
+    .baslikAlt3
+{
+    top:80px;
+    margin : 5px 5px 5px 5px;
+    background-color:#008fba;
+    text-align: center;
+}
+.resg
+ {
+ background-color: #cccccc;
+ border-right: 6px solid #fff;
+ border-bottom: 6px solid #fff;
+ padding: 4px;
+
+ }
+ 
+.yaziicerik
+{
+    
+
+  
+    color:#000;
+
+    font-size:13px;
+    padding:0px 10px 10px 0;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+}
+
+.yaziicerikmesaj
+{
+    
+
+  
+    color:#000;
+    font-size:14px;
+    padding:0px 10px 10px 0;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+}
+
+.yaziicerik2
+{
+
+    color:#000;
+    font-size:13px;
+    padding:5px 3px 3px 0;
+    font-family: Tahoma;
+    font-style:normal;
+    text-decoration:none;
+    
+}
+
+.yaziicerikSecilen
+{
+
+    color:#008fba;
+    font-size:13px;
+    padding:5px 3px 3px 0;
+    font-family: Tahoma;
+    font-style:normal;
+    text-decoration:none;
+    
+}
+
+
+.yaziicerikbaslik2
+{
+    color:#333;
+    font-weight:700;
+    text-decoration:none;
+    font-size:14px;
+    padding:10px 10px 10px 0;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+}
+
+
+
+  .baslik3
+{   background-image:url('images/menu_bg22.gif');  font-size:11px ; background-repeat :repeat-x; height: 21px ; width : 100%  ;  
+    
+    
+    }
+.baslik2
+{
+    
+    top:55px;
+    left:220px;
+  
+    color:#cccccc;
+
+    font-weight:150;
+    font-size:12px;
+    padding-left:8px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Tahoma, Helvetica, Verdana, sans-serif;
+    
+    
+   
+   
+}
+
+
+.text
+{
+    
+     background:  #ffffff;
+    font-size: 12px;
+    font-family: "Tahoma";
+    margin: 0px;
+    padding: 3px 3px 3px 3px;
+    color: #008fba;
+    border:1px solid #ccc;
+    
+    }
+    
+    
+  .icerik{
+   
+    text-align:left;
+    background-color:#fff;
+  padding-top:10px;
+  padding-bottom :15px;
+   width:100%;
+   padding-right :5px;
+  padding-left: 5px;
+
+
+  }
+  
+   .ara{
+    border-right :1px dotted #ccc;
+
+  }
+.icerik2
+{
+
+  background-color:White;
+  
+ 
+    text-align:left;
+    
+  padding-top:10px;
+  padding-bottom :15px;
+   width:100%;
+   padding-right :3px;
+  padding-left: 20px;
+
+}
+
+.icerik5
+{
+
+  background-color:White;
+  
+ 
+    text-align:left;
+    
+  padding-top:10px;
+  padding-bottom :15px;
+   width:100%;
+   padding-right :5px;
+  padding-left: 5px;
+
+}
+
+
+.title
+{
+    background-image:url('../images/bg.png');
+    border:1px solid #ccc;
+    height:20px; 
+    font-weight :800;
+    text-transform:uppercase;
+    padding-top:3px;
+    width   :100%;
+    padding-left: 10px;
+    padding-bottom:4px;  
+    vertical-align:middle;
+
+}
+ul#css3menu1,ul#css3menu1 ul{
+	  margin:0;list-style:none;padding:0;background-color:#000;background-image:url("mainbk.png");background-repeat:repeat;border-width:0px;border-style:solid;border-color:#999999;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;}
+
+ul#css3menu1,ul#css3menu1 ul{
+	  margin:0;list-style:none;padding:0;background-color:#000;background-image:url("mainbk.png");background-repeat:repeat;border-width:0px;border-style:solid;border-color:#999999;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;}
+ul#css3menu1 ul{
+	display:none;position:absolute;left:0;top:100%;-moz-box-shadow:0.7px 0.7px 1px #777777;-webkit-box-shadow:0.7px 0.7px 1px #777777;box-shadow:0.7px 0.7px 1px #777777;background-color:#333;background-image:none;border-width:1px;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;border-style:solid;border-color:#5A5E60;padding:0 9px 9px;}
+ul#css3menu1 li:hover>*{
+	display:block;}
+ul#css3menu1 li{
+	position:relative;display:block;white-space:nowrap;font-size:0;float:left;}
+ul#css3menu1 li:hover{
+	z-index:1;}
+ul#css3menu1 ul ul{
+	position:absolute;left:100%;top:0;}
+ul#css3menu1{
+	padding:1px 1px 1px 0;font-size:0;z-index:999;position:relative;display:inline-block;zoom:1;
+	*display:inline;}
+ul#css3menu1>li{
+	margin:0 0 0 1px;}
+* html ul#css3menu1 li a{
+	display:inline-block;}
+ul#css3menu1 ul>li{
+	margin:1px 0 0;}
+ul#css3menu1 a:active, ul#css3menu1 a:focus{
+	outline-style:none;}
+ul#css3menu1 a{
+	display:block;vertical-align:middle;text-align:left;text-decoration:none;font:bold 12px Tahoma;color:#cccccc;cursor:default;padding:10px;background-color:#333;background-image:url("mainbk.png");background-repeat:repeat;background-position:0 200px;border-width:0px;border-style:none;border-color:;}
+ul#css3menu1 ul li{
+	float:none;margin:9px 0 0;}
+ul#css3menu1 ul a{
+	text-align:left;padding:4px 4px 4px 4px;background-color:#333;background-image:none;border-width:0px 0 0 0;border-style:solid;border-color:#262626;border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;font:13px Tahoma;color:#cccccc;text-decoration:none;}
+ul#css3menu1 li:hover>a,ul#css3menu1 a.pressed{
+	background-color:#00c4ff;border-style:none;color:#ffffff;text-decoration:none;background-image:url("mainbk.png");background-position:0 100px;}
+ul#css3menu1 li:hover>a,ul#css3menu1 a.pressed{
+	background-color:#00c4ff;border-style:none;color:#ffffff;text-decoration:none;background-image:url("mainbk.png");background-position:0 100px;}
+ul#css3menu1 img{
+	border:none;vertical-align:middle;margin-right:10px;}
+ul#css3menu1 img.over{
+	display:none;}
+ul#css3menu1 li:hover > a img.def{
+	display:none;}
+ul#css3menu1 li:hover > a img.over{
+	display:inline;}
+ul#css3menu1 li a.pressed img.over{
+	display:inline;}
+ul#css3menu1 li a.pressed img.def{
+	display:none;}
+ul#css3menu1 span{
+	display:block;overflow:visible;background-position:right center;background-repeat:no-repeat;padding-right:0px;}
+ul#css3menu1 ul span{
+	background-image:url("arrowsub.gif");padding-right:27px;}
+ul#css3menu1 li:hover>a,ul#css3menu1 li>a.pressed{
+	background-color:#00c4ff;background-image:url("mainbk.png");background-position:0 100px;border-style:none;color:#ffffff;text-decoration:none;}
+ul#css3menu1 ul li:hover>a,ul#css3menu1 ul li>a.pressed{
+	background-color:#333;background-image:none;border-style:solid;border-color:#262626;color:#1F80AE;text-decoration:none;}
+ul#css3menu1 li.topfirst>a{
+	border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;-webkit-border-radius:4px;-webkit-border-top-right-radius:0;-webkit-border-bottom-right-radius:0;text-shadow:#000000 0px -1px 1px;}
+ul#css3menu1 li.topfirst:hover>a,ul#css3menu1 li.topfirst>a.pressed{
+	text-shadow:#3d3d3d 0px -1px 1px;}
+ul#css3menu1 li.topmenu>a{
+	text-shadow:#000000 0px -1px 1px;}
+ul#css3menu1 li.topmenu:hover>a,ul#css3menu1 li.topmenu>a.pressed{
+	text-shadow:#3d3d3d 0px -1px 1px;}
+ul#css3menu1 li.toplast>a{
+	border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;-webkit-border-radius:0;-webkit-border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;text-shadow:#000000 0px -1px 1px;}
+ul#css3menu1 li.toplast:hover>a,ul#css3menu1 li.toplast>a.pressed{
+	text-shadow:#3d3d3d 0px -1px 1px;}
+ul#css3menu1 _>li>a{
+	padding:0;}
+ul#css3menu1 li.subfirst>a{
+	border-width:0;border-style:none;padding:0;}
+ul#css3menu1 li.subfirst:hover>a,ul#css3menu1 li.subfirst>a.pressed{
+	border-style:none;}

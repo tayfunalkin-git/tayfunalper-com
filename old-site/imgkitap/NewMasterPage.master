@@ -1,0 +1,234 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="NewMasterPage.master.cs" Inherits="NewMasterPage" %>
+<%@ Register src="userslogin.ascx" tagname="userslogin2" tagprefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head runat="server">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ <title>Prof.Dr.Tayfun ALPER</title>
+  <meta name="robots" content="index, follow" />
+    <meta name="title" id="ttl" runat="server" content="" />
+    <meta name="keywords" id="kw" runat="server" content="" />
+    <meta name="revisit-after" content="2" />
+    <meta name="reply-to" content="y_tayfun_alper@yahoo.com" />
+   
+
+	<link rel="stylesheet" href="css3menu1/style.css" type="text/css" />
+    <link rel="stylesheet" href="css3menu1/footer.css" type="text/css" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+
+<style>._css3m{display:none}
+                                                                             .style1
+    {
+        width: 100%;
+    }
+                                                                             .style11
+    {
+        
+    }
+                                                                             </style>
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+
+
+
+     
+        $(".uyeMenu").hide();
+        $("#oturumAc").show();
+        $('#oturumAc').click(function () {
+            $(".uyeMenu").slideToggle();
+        });
+
+
+    });
+
+
+
+</script>
+
+
+
+
+ 
+
+
+</head>
+
+<body>
+<form runat="server">
+<table cellpadding="0" cellspacing="0" class="style1">
+    <tr>
+        <td>
+
+<div class="header">
+
+<table cellpadding="0" cellspacing="0" class="style1">
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td style="width: 310px" valign="top">
+                <table cellpadding="0" width="100%"  cellspacing="0">
+                    <tr>
+                        <td>
+
+                            <div class="baslik">
+                Prof. Dr. Tayfun ALPER</div>
+                <div>
+                <div class="baslik2">
+                    Ondokuz Mayıs Üniversitesi Tıp Fakültesi
+                    <br />
+                    Kadın Hastalıkları ve Doğum Anabilim Dalı Başkanı</div>
+                </div>
+                                      
+                            </td>
+                    </tr>
+                </table>
+                </td>
+            <td style="width: 350px" valign="top">
+          
+     <ul id="bxslider" runat="server" style="list-style-type:none;">
+
+</ul>
+
+
+
+                </td>
+            <td style="width: 232px; text-align: right;" valign="top">
+                <img class="style11" src="images/tayfunalper.png" /></td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>
+
+
+</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+ <table width="100%" cellpadding="0" cellspacing="0"  style="border-style: none; border-width: 0px; border-color: inherit;">
+ <tr>
+ <td>
+
+ <div id="sasa" runat="server" align="center"  class="tuncay">
+
+</div>
+ <div style="border-style: none; background-position: 0 100px; background-color: #00c4ff; height: 8px;  top:10; background-image: url('css3menu1/mainbk.png'); color: #ffffff; text-decoration: none;">
+    </div>
+  
+   
+     <div class="uyeMenu" style="display:none; width:906px;">
+   <uc1:userslogin2 ID="userslogin21" runat="server" />
+</div>
+
+
+ </td>
+ 
+ </tr>
+ 
+ </table>
+                
+             </td>
+    </tr>
+    <tr>
+        <td>
+            
+
+ 
+        </td>
+    </tr>
+</table>
+
+     <table cellpadding="0" cellspacing="0"  class="style1">
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td valign="top" style="width:890px">
+                <table cellpadding="0" width="100%"  cellspacing="0" style="border-left:1px dotted #d8d8d8; border-right:1px dotted #d8d8d8;">
+                    <tr>
+                        <td class="icerik">
+
+    <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+                                    </td>
+                    </tr>
+                </table>
+                </td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>
+
+
+                                  <div class="footer">
+
+
+
+                                  <table align="center" cellpadding="0" cellspacing="0"><tr>
+                                  
+                                  <td>
+                                   
+                                   <div id="foot" runat="server">
+                                   
+                                   </div>
+                                    
+                                  </td></tr>
+
+                                  <tr>
+                                  
+                                  <td>
+                                   
+                                      &nbsp;</td></tr>
+                                  
+                                  </table>
+                                  </div>
+    
+    <!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+    var sc_project = 7858894;
+    var sc_invisible = 1;
+    var sc_security = "b5e2c329"; 
+</script>
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript><div class="statcounter"><a title="custom counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/7858894/0/b5e2c329/1/"
+alt="custom counter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+    </form>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.bxSlider.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#ctl00_bxslider').bxSlider({
+            mode: 'fade',
+            speed: 1000,
+            pause: 6000,
+            auto: true,
+            controls: false,
+            auto_direction: 'right',
+         
+            width: 307,
+            wrapper_class: 'example3_container',
+            mouseover_pause: true
+        });
+    });
+
+</script>
+
+
+                                  </body>
+                                  
+                                  </html>
