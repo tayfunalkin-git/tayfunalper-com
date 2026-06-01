@@ -1,0 +1,30 @@
+# Yerel geliştirme sunucusu
+server.py
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Diğer
+.env
+.env.local
+node_modules/
+dist/
+build/
