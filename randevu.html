@@ -104,7 +104,7 @@
                                 <a href="javascript:;" class="text-decoration-none appoTrigger h-100 d-block" onclick="$('.appoWrapper').toggle();">
                                     <div class="card info-card">
                                         <div class="card-image">
-                                            <img src="/img/others/info-card-image-01.png" alt="Takipli Hasta">
+                                            <img src="/img/others/info-card-image-01.webp" alt="Takipli Hasta">
                                         </div>
                                         <div class="card-body">
                                             <h5>Takipli Hasta&nbsp;<br>Randevu</h5>
@@ -117,7 +117,7 @@
                                 <a href="https://wa.me/905515121800?text=%C4%B0lk%20Ba%C5%9Fvuru%20/%20WhatsApp%0ADan%C4%B1%C5%9Fma%20Hatt%C4%B1" class="text-decoration-none h-100 d-block" target="_blank">
                                     <div class="card info-card">
                                         <div class="card-image">
-                                            <img src="/img/others/info-card-image-02.png" alt="İlk Başvuru">
+                                            <img src="/img/others/info-card-image-02.webp" alt="İlk Başvuru">
                                         </div>
                                         <div class="card-body">
                                             <h5>İlk Başvuru / WhatsApp&nbsp;<br>Danışma Hattı</h5>
@@ -130,7 +130,7 @@
                                 <a href="https://www.medicalpark.com.tr/hekimler/yasar-tayfun-alper" class="text-decoration-none h-100 d-block" target="_blank">
                                     <div class="card info-card">
                                         <div class="card-image">
-                                            <img src="/img/others/info-card-image-03.png" alt="Ayrıntılı Ultrason">
+                                            <img src="/img/others/info-card-image-03.webp" alt="Ayrıntılı Ultrason">
                                         </div>
                                         <div class="card-body">
                                             <h5>Ayrıntılı Ultrason&nbsp;<br>Randevusu</h5>
@@ -672,6 +672,58 @@
             });
         });
     </script>
+
+        <script>
+        (function(){
+            function getHeaderHeight(){
+                var header = document.querySelector('header.ta-header') || document.querySelector('.navbar') || document.querySelector('.site-header') || document.querySelector('.fixed-top');
+                if(!header) return 0;
+                return header.offsetHeight || 0;
+            }
+
+            function ensureVisible(wrapper){
+                if(!wrapper) return;
+                if(window.jQuery){
+                    jQuery(wrapper).show();
+                } else {
+                    wrapper.style.display = '';
+                    var cs = getComputedStyle(wrapper);
+                    if(cs.display === 'none') wrapper.style.display = 'block';
+                }
+            }
+
+            function scrollToForm(){
+                var el = document.getElementById('appointmentForm');
+                if(!el) return;
+                var wrapper = document.querySelector('.appoWrapper');
+                ensureVisible(wrapper);
+                setTimeout(function(){
+                    var headerH = getHeaderHeight();
+                    var rect = el.getBoundingClientRect();
+                    var top = window.pageYOffset + rect.top - (headerH + 20);
+                    if(top < 0) top = 0;
+                    window.scrollTo({top: top, behavior: 'smooth'});
+                    var focusEl = el.querySelector('input, textarea, select, button');
+                    if(focusEl && typeof focusEl.focus === 'function'){
+                        try{ focusEl.focus({preventScroll:true}); }catch(e){ focusEl.focus(); }
+                    }
+                }, 180);
+            }
+
+            document.querySelectorAll('.appoTrigger').forEach(function(btn){
+                btn.addEventListener('click', function(e){
+                    setTimeout(scrollToForm, 200);
+                });
+            });
+
+            document.querySelectorAll('a[href$="#appointmentForm"]').forEach(function(a){
+                a.addEventListener('click', function(e){
+                    e.preventDefault();
+                    scrollToForm();
+                });
+            });
+        })();
+        </script>
 
 </body>
 </html>
